@@ -7,7 +7,7 @@ namespace NotionAPI.Server.Service
     public class NotionService
     {
         private readonly string key;
-        private readonly string _apiUri = "https://notion.api.com/v1";
+        private readonly string _apiUri = "https://api.notion.com/v1";
         public NotionService(NotionAPIService notionAPIService) {
             key = notionAPIService.GetSecret();   
         }
@@ -48,6 +48,33 @@ namespace NotionAPI.Server.Service
         //Database
         public async Task<string> QueryDatabase()
         {
+            var client = new HttpClient();
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri($"{_apiUri}/databases/43d053f52a1545ca8c316373f851a28a/query"),
+                Headers =
+                {
+                    { "accept", "application/json" },
+                    { "Notion-Version", "2022-06-28" },
+                    { "Authorization", $"Bearer {key}" }
+                },
+                Content = new StringContent("{\"page_size\":100}")
+                {
+                    Headers =
+                    {
+                        ContentType = new MediaTypeHeaderValue("application/json")
+                    }
+                }
+            };
+
+            string? body = null;
+            using (var response = await client.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+                body = await response.Content.ReadAsStringAsync();
+            }
+            return body;
         }
         public async Task<string> CreateDatabase()
         {

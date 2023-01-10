@@ -7,12 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="JsonSubTypes" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.10" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Client\NotionAPIBlazor.Client.csproj" />
     <ProjectReference Include="..\Shared\NotionAPIBlazor.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Notion\Models\Blocks\" />
+    <Folder Include="Notion\Models\Pages\" />
+    <Folder Include="Notion\Models\Users\" />
   </ItemGroup>
 
 
