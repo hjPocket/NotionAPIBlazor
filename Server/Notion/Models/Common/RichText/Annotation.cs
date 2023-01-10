@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace NotionAPIBlazor.Server.Notion.Models.Common
+namespace NotionAPIBlazor.Server.Notion.Models.Common.RichText
 {
     public class Annotation
     {
@@ -12,16 +12,16 @@ namespace NotionAPIBlazor.Server.Notion.Models.Common
         public bool Italic { get; set; }
 
         [JsonProperty("strikethrough")]
-        public bool StrikeThrough {get; set;}
+        public bool StrikeThrough { get; set; }
 
         [JsonProperty("underline")]
-        public bool Underline { get; set;}
+        public bool Underline { get; set; }
 
         [JsonProperty("code")]
-        public bool Code { get; set;}
+        public bool Code { get; set; }
 
         [JsonProperty("color")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public Color? color { get; set;}
+        public Color? color { get; set; }
     }
 }
