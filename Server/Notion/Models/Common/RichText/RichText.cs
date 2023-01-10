@@ -5,6 +5,7 @@ using NotionAPIBlazor.Server.Notion.Models.Common;
 
 namespace NotionAPIBlazor.Server.Notion.Models.Common.RichText
 {
+    //type의 타입 별로 세팅 (Notion Task(Notion API > RichText 토글) 참고)
     [JsonConverter(typeof(JsonSubtypes), "type")]
     [JsonSubtypes.KnownSubType(typeof(TextType), RichTextType.Text)]
     [JsonSubtypes.KnownSubType(typeof(MentionType), RichTextType.Mention)]
