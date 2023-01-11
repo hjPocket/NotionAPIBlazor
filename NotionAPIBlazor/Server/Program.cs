@@ -3,10 +3,10 @@ using NotionAPI.Server.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
 builder.Services.Configure<NotionServiceOptions>(builder.Configuration.GetSection("Notion"));
 builder.Services.AddSingleton<NotionAPIService>();
 builder.Services.AddTransient<NotionService>();
-// Add services to the container.
 
 builder.Services.AddControllersWithViews().ConfigureApiBehaviorOptions(options =>
 {

@@ -17,11 +17,5 @@
     <ProjectReference Include="..\Shared\NotionAPIBlazor.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Notion\Models\Blocks\" />
-    <Folder Include="Notion\Models\Pages\" />
-    <Folder Include="Notion\Models\Users\" />
-  </ItemGroup>
-
 
 </Project>

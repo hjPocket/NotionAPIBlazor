@@ -1,0 +1,237 @@
+﻿@use '@carbon/layout';
+
+$spacing-tokens: (1: layout.$spacing-01, 2: layout.$spacing-02, 3: layout.$spacing-03, 4: layout.$spacing-04, 5: layout.$spacing-05, 6: layout.$spacing-06, 7: layout.$spacing-07, 8: layout.$spacing-08, 9: layout.$spacing-09, 10: layout.$spacing-10, 11: layout.$spacing-11, 12: layout.$spacing-12, 13: layout.$spacing-13, 0: 0);
+
+@each $num, $token in $spacing-tokens {
+    .p-#{$num} {
+        padding: $token !important;
+    }
+
+    .px-#{$num} {
+        padding-left: $token !important;
+        padding-right: $token !important;
+    }
+
+    .py-#{$num} {
+        padding-top: $token !important;
+        padding-bottom: $token !important;
+    }
+
+    .pl-#{$num} {
+        padding-left: $token !important;
+    }
+
+    .pr-#{$num} {
+        padding-right: $token !important;
+    }
+
+    .pt-#{$num} {
+        padding-top: $token !important;
+    }
+
+    .pb-#{$num} {
+        padding-bottom: $token !important;
+    }
+
+    .m-#{$num} {
+        margin: $token !important;
+    }
+
+    .mx-#{$num} {
+        margin-left: $token !important;
+        margin-right: $token !important;
+    }
+
+    .my-#{$num} {
+        margin-top: $token !important;
+        margin-bottom: $token !important;
+    }
+
+    .ml-#{$num} {
+        margin-left: $token !important;
+    }
+
+    .mr-#{$num} {
+        margin-right: $token !important;
+    }
+
+    .mt-#{$num} {
+        margin-top: $token !important;
+    }
+
+    .mb-#{$num} {
+        margin-bottom: $token !important;
+    }
+
+    .w-#{$num} {
+        width: $token !important;
+    }
+
+    .h-#{$num} {
+        height: $token !important;
+    }
+}
+
+$percents: (5, 10, 15, 20, 25, 30, 33, 35, 40, 45, 50, 55, 60, 65, 66, 70, 75, 80, 85, 90, 95, 100);
+
+@each $percent in $percents {
+    .w-#{$percent}p {
+        width: #{$percent}#{"%"} !important;
+    }
+
+    .h-#{$percent}p {
+        height: #{$percent}#{"%"} !important;
+    }
+}
+
+.h-x1 {
+    height: 5rem !important
+}
+
+.h-x2 {
+    height: 10rem !important
+}
+
+.h-x3 {
+    height: 15rem !important
+}
+
+.h-x4 {
+    height: 20rem !important
+}
+
+.h-x5 {
+    height: 25rem !important
+}
+
+.h-x6 {
+    height: 30rem !important
+}
+
+@media(min-width: 42rem) {
+    .h-x1 {
+        height: 5rem !important
+    }
+
+    .h-x2 {
+        height: 10rem !important
+    }
+
+    .h-x3 {
+        height: 15rem !important
+    }
+
+    .h-x4 {
+        height: 20rem !important
+    }
+
+    .h-x5 {
+        height: 25rem !important
+    }
+
+    .h-x6 {
+        height: 30rem !important
+    }
+}
+
+@media(min-width: 66rem) {
+    .h-x1 {
+        height: 4rem !important
+    }
+
+    .h-x2 {
+        height: 8rem !important
+    }
+
+    .h-x3 {
+        height: 12rem !important
+    }
+
+    .h-x4 {
+        height: 16rem !important
+    }
+
+    .h-x5 {
+        height: 20rem !important
+    }
+
+    .h-x6 {
+        height: 24rem !important
+    }
+
+    .h-x7 {
+        height: 28rem !important
+    }
+
+    .h-x8 {
+        height: 32rem !important
+    }
+}
+
+@media(min-width: 82rem) {
+    .h-x1 {
+        height: 5rem !important
+    }
+
+    .h-x2 {
+        height: 10rem !important
+    }
+
+    .h-x3 {
+        height: 15rem !important
+    }
+
+    .h-x4 {
+        height: 20rem !important
+    }
+
+    .h-x5 {
+        height: 25rem !important
+    }
+
+    .h-x6 {
+        height: 30rem !important
+    }
+
+    .h-x7 {
+        height: 35rem !important
+    }
+
+    .h-x8 {
+        height: 40rem !important
+    }
+}
+
+@media(min-width: 99rem) {
+    .h-x1 {
+        height: 6rem !important
+    }
+
+    .h-x2 {
+        height: 12rem !important
+    }
+
+    .h-x3 {
+        height: 18rem !important
+    }
+
+    .h-x4 {
+        height: 24rem !important
+    }
+
+    .h-x5 {
+        height: 30rem !important
+    }
+
+    .h-x6 {
+        height: 36rem !important
+    }
+
+    .h-x7 {
+        height: 42rem !important
+    }
+
+    .h-x8 {
+        height: 48rem !important
+    }
+}

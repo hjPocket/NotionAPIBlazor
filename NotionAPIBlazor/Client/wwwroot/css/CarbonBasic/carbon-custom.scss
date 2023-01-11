@@ -1,0 +1,21 @@
+﻿
+@mixin custom {
+    .cds--css-grid {
+        grid-gap: 10px;
+
+        button {
+            &.cds-btn--primary {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    .cds--text-input {
+        color: #fff;
+    }
+
+    .cds--text-input::placeholder {
+        color: #ccc;
+    }
+}

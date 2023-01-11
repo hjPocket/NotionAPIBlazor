@@ -1,0 +1,179 @@
+﻿@use '@carbon/themes/scss/themes' as *;
+@use '@carbon/themes';
+
+.cds--btn--primary {
+    color: #161616 !important;
+}
+
+/* Light mode */
+/*@media (prefers-color-scheme: light) {
+    body {
+        @include themes.theme($g90);
+        color: var(--cds-text-primary, #000000);
+        background-color: var(--cds-background, #ffffff);
+        // interactive-01 in v10
+        --cds-button-primary: #ffbf3f;
+        --cds-background-brand: #ffbf3f;
+        // interactive-04 in v10
+        --cds-border-interactive: #c99732;
+        --cds-interactive: #c99732;
+        // hover-primary in v10
+        --cds-button-primary-hover: #e4ab38;
+        // active-primary in v10
+        --cds-button-primary-active: #c99732;
+        // highlight in v10
+        --cds-highlight: #291f0a;
+        // ui-05 in v10
+        --cds-border-inverse: #ffbf3f;
+        --cds-layer-selected-inverse: #ffbf3f;
+        // icon-01 in v10
+        --cds-icon-primary: #ffbf3f;
+    }
+}*/
+
+/* Dark mode */
+/*@media (prefers-color-scheme: dark) {
+    body {
+        @include themes.theme($white);
+        color: var(--cds-text-primary, #000000);
+        background-color: var(--cds-background, #ffffff);
+        // interactive-01 in v10
+        --cds-button-primary: #ffbf3f;
+        --cds-background-brand: #ffbf3f;
+        // interactive-04 in v10
+        --cds-border-interactive: #c99732;
+        --cds-interactive: #c99732;
+        // hover-primary in v10
+        --cds-button-primary-hover: #e4ab38;
+        // active-primary in v10
+        --cds-button-primary-active: #c99732;
+        // highlight in v10
+        --cds-highlight: #291f0a;
+        // ui-05 in v10
+        --cds-border-inverse: #ffbf3f;
+        --cds-layer-selected-inverse: #ffbf3f;
+        // icon-01 in v10
+        --cds-icon-primary: #ffbf3f;
+        //
+        --cds-focus: #ffbf3f;
+    }
+}*/
+
+:root {
+    @include themes.theme($g90);
+    color: var(--cds-text-primary, #000000);
+    background-color: var(--cds-background, #ffffff);
+    // interactive-01 in v10
+    --cds-button-primary: #ffbf3f;
+    --cds-background-brand: #ffbf3f;
+    // interactive-04 in v10
+    --cds-border-interactive: #c99732;
+    --cds-interactive: #c99732;
+    // hover-primary in v10
+    --cds-button-primary-hover: #e4ab38;
+    // active-primary in v10
+    --cds-button-primary-active: #c99732;
+    // highlight in v10
+    --cds-highlight: #291f0a;
+    // ui-05 in v10
+    --cds-border-inverse: #ffbf3f;
+    --cds-layer-selected-inverse: #ffbf3f;
+    // icon-01 in v10
+    --cds-icon-primary: #ffbf3f;
+}
+
+.theme-g100 {
+    @include themes.theme($g100);
+    color: var(--cds-text-primary, #000000);
+    background-color: var(--cds-background, #ffffff);
+    // interactive-01 in v10
+    --cds-button-primary: #ffbf3f;
+    --cds-background-brand: #ffbf3f;
+    // interactive-04 in v10
+    --cds-border-interactive: #c99732;
+    --cds-interactive: #c99732;
+    // hover-primary in v10
+    --cds-button-primary-hover: #e4ab38;
+    // active-primary in v10
+    --cds-button-primary-active: #c99732;
+    // highlight in v10
+    --cds-highlight: #291f0a;
+    // ui-05 in v10
+    --cds-border-inverse: #ffbf3f;
+    --cds-layer-selected-inverse: #ffbf3f;
+    // icon-01 in v10
+    --cds-icon-primary: #ffbf3f;
+}
+
+.theme-g90 {
+    @include themes.theme($g90);
+    color: var(--cds-text-primary, #000000);
+    background-color: var(--cds-background, #ffffff);
+    // interactive-01 in v10
+    --cds-button-primary: #ffbf3f;
+    --cds-background-brand: #ffbf3f;
+    // interactive-04 in v10
+    --cds-border-interactive: #c99732;
+    --cds-interactive: #c99732;
+    // hover-primary in v10
+    --cds-button-primary-hover: #e4ab38;
+    // active-primary in v10
+    --cds-button-primary-active: #c99732;
+    // highlight in v10
+    --cds-highlight: #291f0a;
+    // ui-05 in v10
+    --cds-border-inverse: #ffbf3f;
+    --cds-layer-selected-inverse: #ffbf3f;
+    // icon-01 in v10
+    --cds-icon-primary: #ffbf3f;
+}
+
+.theme-g10 {
+    @include themes.theme($g10);
+    color: var(--cds-text-primary, #000000);
+    background-color: var(--cds-background, #ffffff);
+    // interactive-01 in v10
+    --cds-button-primary: #ffbf3f;
+    --cds-background-brand: #ffbf3f;
+    // interactive-04 in v10
+    --cds-border-interactive: #c99732;
+    --cds-interactive: #c99732;
+    // hover-primary in v10
+    --cds-button-primary-hover: #e4ab38;
+    // active-primary in v10
+    --cds-button-primary-active: #c99732;
+    // highlight in v10
+    --cds-highlight: #291f0a;
+    // ui-05 in v10
+    --cds-border-inverse: #ffbf3f;
+    --cds-layer-selected-inverse: #ffbf3f;
+    // icon-01 in v10
+    --cds-icon-primary: #ffbf3f;
+    //
+    --cds-focus: #ffbf3f;
+}
+
+.theme-white {
+    @include themes.theme($white);
+    color: var(--cds-text-primary, #000000);
+    background-color: var(--cds-background, #ffffff);
+    // interactive-01 in v10
+    --cds-button-primary: #ffbf3f;
+    --cds-background-brand: #ffbf3f;
+    // interactive-04 in v10
+    --cds-border-interactive: #c99732;
+    --cds-interactive: #c99732;
+    // hover-primary in v10
+    --cds-button-primary-hover: #e4ab38;
+    // active-primary in v10
+    --cds-button-primary-active: #c99732;
+    // highlight in v10
+    --cds-highlight: #291f0a;
+    // ui-05 in v10
+    --cds-border-inverse: #ffbf3f;
+    --cds-layer-selected-inverse: #ffbf3f;
+    // icon-01 in v10
+    --cds-icon-primary: #ffbf3f;
+    //
+    --cds-focus: #ffbf3f;
+}
