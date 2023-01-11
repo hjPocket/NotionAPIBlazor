@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using NotionAPIBlazor.Server.Notion.Models.Common.Icon;
 using NotionAPIBlazor.Server.Notion.Models.Common.Page;
-using NotionAPIBlazor.Server.Notion.Models.Databases;
 
 namespace NotionAPIBlazor.Server.Notion.Models.Common
 {

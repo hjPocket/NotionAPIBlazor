@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace NotionAPIBlazor.Server.Notion.Models.Databases
+namespace NotionAPIBlazor.Server.Notion.Models.Common
 {
     public class PartialUser
     {
