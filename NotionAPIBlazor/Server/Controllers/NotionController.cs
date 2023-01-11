@@ -13,8 +13,6 @@ namespace NotionAPI.Server.Controllers
     public class NotionController : ControllerBase
     {
         private readonly string _apiUri = "https://notion.api.com/v1";
-        private readonly string secret = "secret_HEnVgiFxW3ORkDRJMFRB9n6KyjCrFqLPvvon5YkjQbL";
-
         private readonly NotionService notionService;
 
         public NotionController(NotionService notionService) {
@@ -48,6 +46,7 @@ namespace NotionAPI.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<string>> CreateDatabase(ResultJson json)
         {
+            /*
             var client = new HttpClient();
             var request = new HttpRequestMessage
             {
@@ -76,7 +75,8 @@ namespace NotionAPI.Server.Controllers
                 Console.WriteLine(body);
             }
 
-            return Ok(body);
+            return Ok(body);*/
+            return Ok("");
         }
 
         [HttpGet]
@@ -87,7 +87,7 @@ namespace NotionAPI.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<string> GetDatabase()
+        public async Task<object> GetDatabase()
         {
             return await notionService.QueryDatabase();
         }

@@ -47,7 +47,7 @@ namespace NotionAPIBlazor.Server.Notion.Api
             JsonSerializerSettings jsonSerializerSettings = null, 
             CancellationToken cancellationToken = default)
         {
-            var response = await SendAsync(url, HttpMethod.Get, queryParams, headers, cancellationToken: cancellationToken);
+            var response = await SendAsync(url, HttpMethod.Get, queryParams, headers, null, cancellationToken: cancellationToken);
             return await ParseStreamAsync(response, jsonSerializerSettings);
         }
 
@@ -149,6 +149,7 @@ namespace NotionAPIBlazor.Server.Notion.Api
             using var stream = await response.Content.ReadAsStreamAsync();
             using var streamReader = new StreamReader(stream);
             using JsonReader jsonReader = new JsonTextReader(streamReader);
+            
 
             var serializer = serializerSettings == null ? JsonSerializer.CreateDefault() : JsonSerializer.Create(serializerSettings);
 

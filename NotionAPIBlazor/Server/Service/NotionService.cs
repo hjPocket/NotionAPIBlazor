@@ -1,135 +1,41 @@
 ﻿using Microsoft.AspNetCore.DataProtection;
 using NotionAPI.Client;
+using NotionAPIBlazor.Server.Notion.Api;
 using System.Net.Http.Headers;
 
 namespace NotionAPI.Server.Service
 {
     public class NotionService
     {
-        private readonly string key;
-        private readonly string _apiUri = "https://api.notion.com/v1";
+        private readonly RestApi restAPI;
         public NotionService(NotionAPIService notionAPIService) {
-            key = notionAPIService.GetSecret();   
+            restAPI = notionAPIService.GetRestApi();
         }
 
         //Page
-
-
-        public async Task<string> CreatePage()
+        public async Task CreatePage()
         {
-            var client = new HttpClient();
-            var request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Post,
-                RequestUri = new Uri($"{_apiUri}/pages"),
-                Headers =
-                {
-                    { "accept", "application/json" },
-                    { "Notion-Version", "2022-06-28" },
-                    { "Authorization", $"Bearer {key}" }
-                },
-                Content = new StringContent("{\"parent\":\"string\",\"properties\":\"string\",\"children\":[\"string\"],\"icon\":\"string\",\"cover\":\"string\"}")
-                {
-                    Headers =
-                    {
-                        ContentType = new MediaTypeHeaderValue("application/json")
-                    }
-                }
-            };
-
-            using (var response = await client.SendAsync(request))
-            {
-                response.EnsureSuccessStatusCode();
-                var body = await response.Content.ReadAsStringAsync();
-                return body;
-            }
         }
 
         //Database
-        public async Task<string> QueryDatabase()
+        public async Task<object> QueryDatabase()
         {
-            var client = new HttpClient();
-            var request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Post,
-                RequestUri = new Uri($"{_apiUri}/databases/43d053f52a1545ca8c316373f851a28a/query"),
-                Headers =
-                {
-                    { "accept", "application/json" },
-                    { "Notion-Version", "2022-06-28" },
-                    { "Authorization", $"Bearer {key}" }
-                },
-                Content = new StringContent("{\"page_size\":100}")
-                {
-                    Headers =
-                    {
-                        ContentType = new MediaTypeHeaderValue("application/json")
-                    }
-                }
-            };
+            IDictionary<string, int> bodyData = new Dictionary<string, int>();
+            bodyData["page_size"] = 100;
 
-            string? body = null;
-            using (var response = await client.SendAsync(request))
-            {
-                response.EnsureSuccessStatusCode();
-                body = await response.Content.ReadAsStringAsync();
-            }
-            return body;
+            return await restAPI.PostAsync<object>("/v1/databases/43d053f52a1545ca8c316373f851a28a/query", bodyData);
+
         }
-        public async Task<string> CreateDatabase()
-        {
-            var client = new HttpClient();
-            var request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Post,
-                RequestUri = new Uri($"{_apiUri}/databases"),
-                Headers =
-                {
-                    { "accept", "application/json" },
-                        { "Notion-Version", "2022-06-28" },
-                    { "Authorization", $"Bearer {key}" }
-                },
-                Content = new StringContent("{\"parent\":\"string\",\"properties\":\"string\"}")
-                {
-                    Headers =
-                    {
-                        ContentType = new MediaTypeHeaderValue("application/json")
-                    }
-                }
-            };
-
-            string? body = null;
-            using (var response = await client.SendAsync(request))
-            {
-                response.EnsureSuccessStatusCode();
-                body = await response.Content.ReadAsStringAsync();
-            }
-            return body;
+        public async Task CreateDatabase()
+        { 
         }
 
-        //list all users
-        public async Task<string> ListAllUsers()
-        {
-            var client = new HttpClient();
-            var request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Post,
-                RequestUri = new Uri($"{_apiUri}/users"),
-                Headers =
-                {
-                    { "accept", "application/json" },
-                    { "Notion-Version", "2022-06-28" },
-                    { "Authorization", $"Bearer {key}" }
-                }
-            };
+        //Blocks
 
-            string? body = null;
-            using (var response = await client.SendAsync(request))
-            {
-                response.EnsureSuccessStatusCode();
-                body = await response.Content.ReadAsStringAsync();
-            }
-            return body;
+
+        //Users
+        public async Task ListAllUsers()
+        {
         }
     }
 }

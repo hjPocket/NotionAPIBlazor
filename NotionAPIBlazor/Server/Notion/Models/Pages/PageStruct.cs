@@ -1,14 +1,14 @@
 ﻿using Newtonsoft.Json;
-using NotionAPIBlazor.Server.Notion.Models.Common.Icon;
-using NotionAPIBlazor.Server.Notion.Models.Common.RichText;
-using NotionAPIBlazor.Server.Notion.Models.Databases.Properties;
-using NotionAPIBlazor.Server.Notion.Models.Common.File;
-using NotionAPIBlazor.Server.Notion.Models.Common.Page;
 using NotionAPIBlazor.Server.Notion.Models.Common;
+using NotionAPIBlazor.Server.Notion.Models.Common.File;
+using NotionAPIBlazor.Server.Notion.Models.Common.Icon;
+using NotionAPIBlazor.Server.Notion.Models.Common.Page;
+using NotionAPIBlazor.Server.Notion.Models.Databases;
+using NotionAPIBlazor.Server.Notion.Models.Pages.Properties;
 
-namespace NotionAPIBlazor.Server.Notion.Models.Databases
+namespace NotionAPIBlazor.Server.Notion.Models.Pages
 {
-    public class DatabaseStruct : ICommonStruct
+    public class PageStruct : ICommonStruct
     {
         [JsonProperty("object")]
         public string Object { get; set; }
@@ -28,14 +28,14 @@ namespace NotionAPIBlazor.Server.Notion.Models.Databases
         [JsonProperty("last_edited_by")]
         public PartialUser LastEditedBy { get; set; }
 
-        [JsonProperty("title")]
-        public List<RichText> Title { get; set; }
-
-        [JsonProperty("description")]
-        public List<RichText> Description { get; set; }
+        [JsonProperty("archived")]
+        public bool Archived { get; set; }
 
         [JsonProperty("icon")]
         public IconObject Icon { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
 
         [JsonProperty("cover")]
         public FileObject Cover { get; set; }
@@ -44,15 +44,6 @@ namespace NotionAPIBlazor.Server.Notion.Models.Databases
         public Property Properties { get; set; }
 
         [JsonProperty("parent")]
-        public DatabaseParent Parent { get; set; }
-
-        [JsonProperty("url")]
-        public string Url { get; set; }
-
-        [JsonProperty("archived")]
-        public bool Archived { get; set; }
-
-        [JsonProperty("is_inline")]
-        public bool IsInline { get; set; }
+        public PageParent Parent { get; set; }
     }
 }
