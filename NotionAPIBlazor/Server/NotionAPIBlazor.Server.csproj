@@ -17,10 +17,5 @@
     <ProjectReference Include="..\Shared\NotionAPIBlazor.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Notion\ApiHelper\Databases\Filter\" />
-    <Folder Include="Notion\ApiHelper\Databases\Sorts\" />
-  </ItemGroup>
-
 
 </Project>

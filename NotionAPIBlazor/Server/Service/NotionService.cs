@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.DataProtection;
-using NotionAPI.Client;
 using NotionAPIBlazor.Server.Notion.Api;
+using NotionAPIBlazor.Shared.Notion.ApiHelper.Databases;
 using System.Net.Http.Headers;
 
 namespace NotionAPI.Server.Service
@@ -15,16 +15,13 @@ namespace NotionAPI.Server.Service
         //Page
         public async Task CreatePage()
         {
+            
         }
 
         //Database
-        public async Task<object> QueryDatabase()
+        public async Task<object> QueryDatabase(string database_id, QueryBodyParams bodyParam)
         {
-            IDictionary<string, int> bodyData = new Dictionary<string, int>();
-            bodyData["page_size"] = 10;
-
-            return await restAPI.PostAsync<object>("/v1/databases/43d053f52a1545ca8c316373f851a28a/query", bodyData);
-
+            return await restAPI.PostAsync<object>($"/v1/databases/{database_id}/query", bodyParam);
         }
         public async Task CreateDatabase()
         { 

@@ -1,21 +1,69 @@
 ﻿@page "/"
+@using NotionAPIBlazor.Shared.Notion.ApiHelper.Databases
 @inject HttpClient httpClient;
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1 class="mb-8">Notion API Test</h1>
 
-<div style="mt-5">
-    <button @onclick="HandleClickQuery" class="cds--btn cds--btn--primary cds--btn--md">
-        Get Database Query
-    </button>
+<div class="cds-data-table-container">
+    <div class="cds--data-table-header">
+        <h4 class="cds--data-table-header__title" id="table-title">Databases</h4>
+        <p class="cds--data-table-header__description"></p>
+    </div>
+    <div class="cds--data-table-content">
+        <table aria-labelledby="table-title" class="cds--data-table cds--data-table--md">
+            <thead>
+                <tr>
+                    <th scope="col"> <div class="cds--table-header-label">Name</div> </th>
+                    <th scope="col"> <div class="cds--table-header-label">Method</div> </th>
+                    <th scope="col"> <div class="cds--table-header-label">Uri</div> </th>
+                    <th scope="col"> <div class="cds--table-header-label">Test</div> </th>
+                    <th scope="col"> <div class="cds--table-header-label">Doc Link</div> </th>
+                </tr>
+            </thead>
+            <tbody aria-live="polite">
+                <tr>
+                    <td>QueryDatabase</td>
+                    <td>POST</td>
+                    <td>/api/Notion/QueryDatabase/{database_id}</td>
+                    <td>
+                        <button class="cds--btn--primary cds--btn--md" @onclick="HandleClickQuery">
+                            Query Databases
+                        </button>
+                    </td>
+                    <td>
+                        <a href="https://developers.notion.com/reference/post-database-query" target="_blank"></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="mt-8">
+    <h2>Results</h2>
+    <div class="mt-5" style="width:100%;padding:10px;background-color:#444;margin:0 auto;border-radius:10px;color:#fff;">
+        @results
+    </div>
 </div>
 
 @code
 {
+    private string results = "";
+
     private async Task HandleClickQuery()
     {
-        var response = await httpClient.GetStringAsync("/api/Notion/GetDatabase");
+        QueryBodyParams bodyData = new QueryBodyParams()
+        {
+            page_size = 10
+        };
+
+        Dictionary<string, object> data = new Dictionary<string, object>();
+        data.Add("Data", bodyData);
+        data.Add("DatabaseID", "43d053f52a1545ca8c316373f851a28a");
+
+        var response = await httpClient.PostAsJsonAsync<Dictionary<string, object>>($"/api/Notion/QueryDatabase/43d053f52a1545ca8c316373f851a28a", data);
         Console.WriteLine(response);
     }
 }

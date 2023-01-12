@@ -9,14 +9,13 @@ using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
-using NotionAPIBlazor.Server.Notion.Models.NotionAPIError;
+using NotionAPIBlazor.Shared.Notion.Models.NotionAPIError;
 
 namespace NotionAPIBlazor.Server.Notion.Api
 {
     public class RestApi : IRestAsync
     {
         private readonly Options _options;
-
         private HttpClient _httpClient;
 
         protected readonly JsonSerializerSettings DefaultSerializerSettings = new()
@@ -61,8 +60,13 @@ namespace NotionAPIBlazor.Server.Notion.Api
         {
             void AttatchContent(HttpRequestMessage httpRequest)
             {
-                httpRequest.Content = new StringContent(JsonConvert.SerializeObject(body, DefaultSerializerSettings),
-                    Encoding.UTF8, "application/json");
+                httpRequest.Content = new StringContent(JsonConvert.SerializeObject(body, DefaultSerializerSettings), Encoding.UTF8, "application/json")
+                {
+                    Headers =
+                    {
+                        ContentType = new MediaTypeHeaderValue("application/json")
+                    }
+                };
             }
 
             var response = await SendAsync(url, HttpMethod.Post, queryParams, headers, AttatchContent, cancellationToken);
@@ -84,6 +88,7 @@ namespace NotionAPIBlazor.Server.Notion.Api
             using var httpRequest = new HttpRequestMessage(httpMethod, requestUri);
             httpRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _options.SecretKey);
             httpRequest.Headers.Add("Notion-Version", _options.NotionVersion);
+            httpRequest.Headers.Add("Accept", "application/json");
 
             if(headers != null)
             {
@@ -146,14 +151,16 @@ namespace NotionAPIBlazor.Server.Notion.Api
             HttpResponseMessage response,
             JsonSerializerSettings serializerSettings = null)
         {
-            using var stream = await response.Content.ReadAsStreamAsync();
-            using var streamReader = new StreamReader(stream);
-            using JsonReader jsonReader = new JsonTextReader(streamReader);
-            
+            var _string = await response.Content.ReadAsStringAsync();
+            var stream = await response.Content.ReadAsStreamAsync();
+            var streamReader = new StreamReader(stream);
+            JsonReader jsonReader = new JsonTextReader(streamReader);
+                        
+            //dynamic json = JsonConvert.DeserializeObject(_string, serializerSettings);
 
             var serializer = serializerSettings == null ? JsonSerializer.CreateDefault() : JsonSerializer.Create(serializerSettings);
 
-            return serializer.Deserialize(jsonReader);
+            return _string;
         }
     }
 }
