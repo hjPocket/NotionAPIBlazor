@@ -47,7 +47,7 @@ namespace NotionAPIBlazor.Server.Notion.Api
             JsonSerializerSettings jsonSerializerSettings = null, 
             CancellationToken cancellationToken = default)
         {
-            var response = await SendAsync(url, HttpMethod.Get, queryParams, headers, null, cancellationToken: cancellationToken);
+            var response = await SendAsync(url, HttpMethod.Get, queryParams, headers, cancellationToken: cancellationToken);
             return await ParseStreamAsync(response, jsonSerializerSettings);
         }
 
