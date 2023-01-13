@@ -1,23 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
+﻿using System.Net.Http.Headers;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using NotionAPIBlazor.Shared.Notion.Models.NotionAPIError;
 
-namespace NotionAPIBlazor.Server.Notion.Api
+namespace NotionAPIBlazor.Shared.Notion.Api
 {
     public class RestApi : IRestAsync
     {
         private readonly Options _options;
         private HttpClient _httpClient;
-
         protected readonly JsonSerializerSettings DefaultSerializerSettings = new()
         {
             NullValueHandling = NullValueHandling.Ignore,
@@ -39,7 +32,7 @@ namespace NotionAPIBlazor.Server.Notion.Api
             };
         }
 
-        public async Task<object> GetAsync<T>(
+        public async Task<T> GetAsync<T>(
             string url, 
             IDictionary<string, string> queryParams = null, 
             IDictionary<string, string> headers = null, 
@@ -47,12 +40,12 @@ namespace NotionAPIBlazor.Server.Notion.Api
             CancellationToken cancellationToken = default)
         {
             var response = await SendAsync(url, HttpMethod.Get, queryParams, headers, cancellationToken: cancellationToken);
-            return await ParseStreamAsync(response, jsonSerializerSettings);
+            return await response.ParseStreamAsync<T>(jsonSerializerSettings);
         }
 
-        public async Task<object> PostAsync<T>(
+        public async Task<T> PostAsync<T>(
             string url, 
-            object body, 
+            object body = null, 
             IDictionary<string, string> queryParams = null, 
             IDictionary<string, string> headers = null, 
             JsonSerializerSettings jsonSerializerSettings = null, 
@@ -60,17 +53,13 @@ namespace NotionAPIBlazor.Server.Notion.Api
         {
             void AttatchContent(HttpRequestMessage httpRequest)
             {
-                httpRequest.Content = new StringContent(JsonConvert.SerializeObject(body, DefaultSerializerSettings), Encoding.UTF8, "application/json")
-                {
-                    Headers =
-                    {
-                        ContentType = new MediaTypeHeaderValue("application/json")
-                    }
-                };
+                if (body == null) return;
+
+                httpRequest.Content = new StringContent(JsonConvert.SerializeObject(body, DefaultSerializerSettings), Encoding.UTF8, "application/json");
             }
 
             var response = await SendAsync(url, HttpMethod.Post, queryParams, headers, AttatchContent, cancellationToken);
-            return await ParseStreamAsync(response, jsonSerializerSettings);
+            return await response.ParseStreamAsync<T>(jsonSerializerSettings);
         }
 
         private async Task<HttpResponseMessage> SendAsync(
@@ -88,7 +77,6 @@ namespace NotionAPIBlazor.Server.Notion.Api
             using var httpRequest = new HttpRequestMessage(httpMethod, requestUri);
             httpRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _options.SecretKey);
             httpRequest.Headers.Add("Notion-Version", _options.NotionVersion);
-            httpRequest.Headers.Add("Accept", "application/json");
 
             if(headers != null)
             {
@@ -145,22 +133,6 @@ namespace NotionAPIBlazor.Server.Notion.Api
             }
 
             return new NotionApiException(response.StatusCode, errorResponse?.ErrorCode, errorResponse?.Message);
-        }
-
-        private async Task<object> ParseStreamAsync(
-            HttpResponseMessage response,
-            JsonSerializerSettings serializerSettings = null)
-        {
-            var _string = await response.Content.ReadAsStringAsync();
-            var stream = await response.Content.ReadAsStreamAsync();
-            var streamReader = new StreamReader(stream);
-            JsonReader jsonReader = new JsonTextReader(streamReader);
-                        
-            //dynamic json = JsonConvert.DeserializeObject(_string, serializerSettings);
-
-            var serializer = serializerSettings == null ? JsonSerializer.CreateDefault() : JsonSerializer.Create(serializerSettings);
-
-            return _string;
         }
     }
 }

@@ -1,45 +1,48 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NotionAPI.Server.Service;
+using NotionAPIBlazor.Server.Service;
+using NotionAPIBlazor.Shared.Notion.Api;
 using NotionAPIBlazor.Shared.Notion.ApiHelper.Databases;
+using NotionAPIBlazor.Shared.Notion.Models;
 
-namespace NotionAPI.Server.Controllers
+namespace NotionAPIBlazor.Server.Controllers
 {
-    [ApiController]
     [Route("api/[controller]/[action]")]
+    [ApiController]
     public class NotionController : ControllerBase
     {
-        private readonly string _apiUri = "https://notion.api.com/v1";
-        private readonly NotionService notionService;
+        private readonly DatabaseService notionService;
 
-        public NotionController(NotionService notionService) {
+        public NotionController(DatabaseService notionService) 
+        {
             this.notionService = notionService;
         }
 
-        [HttpPost]
-        public async Task<ActionResult<string>> Post()
+        [HttpGet("{database_id}")]
+        public async Task<Pagination<object>> GetDatabase(string database_id)
         {
-            return Ok("");
+            Console.WriteLine(database_id);
+            Pagination<object> result = await notionService.QueryDatabase(database_id);
+            return result;
         }
 
         [HttpPost]
-        public async Task<ActionResult<string>> CreateDatabase()
+        public async Task<ActionResult<QueryBodyType>> QueryDatabase(QueryBodyType bodyType) 
         {
-            return Ok("");
-        }
+            string database_id = bodyType.DatabaseID;
+            QueryBodyParams bodyParams = new();
+            if(bodyType.Data != null)
+            {
+                bodyParams = bodyType.Data;
+            }
 
-        [HttpGet]
-        public async Task<string> ListAllUsers()
-        {
-            return "HIHIHI";
-        }
+            Pagination<object> result = await notionService.QueryDatabase(database_id, bodyParams);
+            
+            if(result != null)
+            {
+                bodyType.ReturnData = result;
+            }
 
-        [HttpPost]
-        public async Task<object> QueryDatabase(Dictionary<string, object> data)
-        {
-            string DatabaseID = (string) data["DatabaseID"];
-            QueryBodyParams Data = (QueryBodyParams) data["Data"];
-
-            return await notionService.QueryDatabase(DatabaseID, Data);
+            return Ok(bodyType);
         }
     }
 }

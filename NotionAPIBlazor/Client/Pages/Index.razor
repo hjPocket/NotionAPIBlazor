@@ -1,6 +1,8 @@
 ﻿@page "/"
+@using Newtonsoft.Json;
 @using NotionAPIBlazor.Shared.Notion.ApiHelper.Databases
-@inject HttpClient httpClient;
+@using NotionAPIBlazor.Shared.Notion.Models;
+@inject HttpClient Http;
 
 <PageTitle>Index</PageTitle>
 
@@ -26,14 +28,31 @@
                 <tr>
                     <td>QueryDatabase</td>
                     <td>POST</td>
-                    <td>/api/Notion/QueryDatabase/{database_id}</td>
+                    <td>/api/Notion/QueryDatabase</td>
                     <td>
-                        <button class="cds--btn--primary cds--btn--md" @onclick="HandleClickQuery">
-                            Query Databases
+                        <button class="cds--btn--primary cds--btn--sm" style="white-space:nowrap;width:150px" @onclick="HandleClickQuery">
+                            Query Database
                         </button>
                     </td>
                     <td>
-                        <a href="https://developers.notion.com/reference/post-database-query" target="_blank"></a>
+                        <a href="https://developers.notion.com/reference/post-database-query" target="_blank" class="link-info">
+                            Query Document
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>CreateDatabase</td>
+                    <td>POST</td>
+                    <td>/api/Notion/CreateDatabase</td>
+                    <td>
+                        <button class="cds--btn--primary cds--btn--sm" style="white-space:nowrap;width:150px" @onclick="HandleClickCreate">
+                            Create Database
+                        </button>
+                    </td>
+                    <td>
+                        <a href="https://developers.notion.com/reference/create-a-database" target="_blank" class="link-info">
+                            Create Document
+                        </a>
                     </td>
                 </tr>
             </tbody>
@@ -54,16 +73,21 @@
 
     private async Task HandleClickQuery()
     {
-        QueryBodyParams bodyData = new QueryBodyParams()
-        {
-            page_size = 10
-        };
+        QueryBodyType Body = new QueryBodyType()
+            {
+                Data = new QueryBodyParams()
+                {
+                    PageSize = 10
+                },
+                DatabaseID = "43d053f52a1545ca8c316373f851a28a"
+            };
 
-        Dictionary<string, object> data = new Dictionary<string, object>();
-        data.Add("Data", bodyData);
-        data.Add("DatabaseID", "43d053f52a1545ca8c316373f851a28a");
+        var response = await Http.PostAsJsonAsync<QueryBodyType>($"api/Notion/QueryDatabase", Body);
+        results = response.ToString();
+    }
 
-        var response = await httpClient.PostAsJsonAsync<Dictionary<string, object>>($"/api/Notion/QueryDatabase/43d053f52a1545ca8c316373f851a28a", data);
-        Console.WriteLine(response);
+    private async Task HandleClickCreate()
+    {
+        
     }
 }
