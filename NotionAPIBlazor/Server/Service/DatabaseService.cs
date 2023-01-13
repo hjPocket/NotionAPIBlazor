@@ -1,14 +1,13 @@
-﻿using Microsoft.AspNetCore.DataProtection;
-using NotionAPIBlazor.Server.Notion.Api;
+﻿using NotionAPIBlazor.Shared.Notion.Api;
 using NotionAPIBlazor.Shared.Notion.ApiHelper.Databases;
-using System.Net.Http.Headers;
+using NotionAPIBlazor.Shared.Notion.Models;
 
-namespace NotionAPI.Server.Service
+namespace NotionAPIBlazor.Server.Service
 {
-    public class NotionService
+    public class DatabaseService
     {
         private readonly RestApi restAPI;
-        public NotionService(NotionAPIService notionAPIService) {
+        public DatabaseService(NotionAPIService notionAPIService) {
             restAPI = notionAPIService.GetRestApi();
         }
 
@@ -19,10 +18,11 @@ namespace NotionAPI.Server.Service
         }
 
         //Database
-        public async Task<object> QueryDatabase(string database_id, QueryBodyParams bodyParam)
+        public async Task<Pagination<object>> QueryDatabase(string database_id, QueryBodyParams? bodyParam = null)
         {
-            return await restAPI.PostAsync<object>($"/v1/databases/{database_id}/query", bodyParam);
+            return await restAPI.PostAsync<Pagination<object>>($"/v1/databases/{database_id}/query", bodyParam);
         }
+
         public async Task CreateDatabase()
         { 
         }

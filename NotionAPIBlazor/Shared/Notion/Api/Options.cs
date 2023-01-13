@@ -1,4 +1,4 @@
-﻿namespace NotionAPIBlazor.Server.Notion.Api
+﻿namespace NotionAPIBlazor.Shared.Notion.Api
 {
     public class Options
     {

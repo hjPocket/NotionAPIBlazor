@@ -1,12 +1,14 @@
-using Microsoft.AspNetCore.ResponseCompression;
-using NotionAPI.Server.Service;
+using NotionAPIBlazor.Server.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.Configure<NotionServiceOptions>(builder.Configuration.GetSection("Notion"));
 builder.Services.AddSingleton<NotionAPIService>();
-builder.Services.AddTransient<NotionService>();
+
+//서비스 등록
+builder.Services.AddTransient<DatabaseService>();
+builder.Services.AddTransient<PageService>();
 
 builder.Services.AddControllersWithViews().ConfigureApiBehaviorOptions(options =>
 {
@@ -34,7 +36,6 @@ app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
 
 app.UseRouting();
-
 
 app.MapRazorPages();
 app.MapControllers();
