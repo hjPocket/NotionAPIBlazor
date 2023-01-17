@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace NotionAPIBlazor.Shared.Notion.Models.Common.Page
+namespace NotionAPIBlazor.Shared.Notion.Models.Common.Parent
 {
     public class WorkSpaceParent
     {

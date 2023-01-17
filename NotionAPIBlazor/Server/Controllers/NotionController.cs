@@ -3,6 +3,7 @@ using NotionAPIBlazor.Server.Service;
 using NotionAPIBlazor.Shared.Notion.Api;
 using NotionAPIBlazor.Shared.Notion.ApiHelper.Databases;
 using NotionAPIBlazor.Shared.Notion.Models;
+using NotionAPIBlazor.Shared.Notion.Models.Pages;
 
 namespace NotionAPIBlazor.Server.Controllers
 {
@@ -17,13 +18,6 @@ namespace NotionAPIBlazor.Server.Controllers
             this.notionService = notionService;
         }
 
-        [HttpGet("{database_id}")]
-        public async Task<Pagination<object>> GetDatabase(string database_id)
-        {
-            Console.WriteLine(database_id);
-            Pagination<object> result = await notionService.QueryDatabase(database_id);
-            return result;
-        }
 
         [HttpPost]
         public async Task<ActionResult<QueryBodyType>> QueryDatabase(QueryBodyType bodyType) 
@@ -35,7 +29,7 @@ namespace NotionAPIBlazor.Server.Controllers
                 bodyParams = bodyType.Data;
             }
 
-            Pagination<object> result = await notionService.QueryDatabase(database_id, bodyParams);
+            Pagination<PageStruct> result = await notionService.QueryDatabase(database_id, bodyParams);
             
             if(result != null)
             {

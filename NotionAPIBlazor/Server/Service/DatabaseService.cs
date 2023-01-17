@@ -1,6 +1,7 @@
 ﻿using NotionAPIBlazor.Shared.Notion.Api;
 using NotionAPIBlazor.Shared.Notion.ApiHelper.Databases;
 using NotionAPIBlazor.Shared.Notion.Models;
+using NotionAPIBlazor.Shared.Notion.Models.Pages;
 
 namespace NotionAPIBlazor.Server.Service
 {
@@ -18,9 +19,9 @@ namespace NotionAPIBlazor.Server.Service
         }
 
         //Database
-        public async Task<Pagination<object>> QueryDatabase(string database_id, QueryBodyParams? bodyParam = null)
+        public async Task<Pagination<PageStruct>> QueryDatabase(string database_id, QueryBodyParams? bodyParam = null)
         {
-            return await restAPI.PostAsync<Pagination<object>>($"/v1/databases/{database_id}/query", bodyParam);
+            return await restAPI.PostAsync<Pagination<PageStruct>>($"/v1/databases/{database_id}/query", bodyParam);
         }
 
         public async Task CreateDatabase()

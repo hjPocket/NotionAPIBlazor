@@ -1,9 +1,7 @@
 ﻿using Newtonsoft.Json;
-using NotionAPIBlazor.Shared.Notion.Models.Common.Icon;
 using NotionAPIBlazor.Shared.Notion.Models.Common.RichText;
 using NotionAPIBlazor.Shared.Notion.Models.Databases.Properties;
 using NotionAPIBlazor.Shared.Notion.Models.Common.File;
-using NotionAPIBlazor.Shared.Notion.Models.Common.Page;
 using NotionAPIBlazor.Shared.Notion.Models.Common;
 
 namespace NotionAPIBlazor.Shared.Notion.Models.Databases
@@ -35,7 +33,7 @@ namespace NotionAPIBlazor.Shared.Notion.Models.Databases
         public List<RichText> Description { get; set; }
 
         [JsonProperty("icon")]
-        public IconObject Icon { get; set; }
+        public IIconProperty Icon { get; set; }
 
         [JsonProperty("cover")]
         public FileObject Cover { get; set; }
@@ -44,7 +42,7 @@ namespace NotionAPIBlazor.Shared.Notion.Models.Databases
         public Property Properties { get; set; }
 
         [JsonProperty("parent")]
-        public DatabaseParent Parent { get; set; }
+        public IDatabaseParent Parent { get; set; }
 
         [JsonProperty("url")]
         public string Url { get; set; }

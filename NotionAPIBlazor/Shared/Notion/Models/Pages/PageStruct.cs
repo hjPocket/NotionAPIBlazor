@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
 using NotionAPIBlazor.Shared.Notion.Models.Common;
 using NotionAPIBlazor.Shared.Notion.Models.Common.File;
-using NotionAPIBlazor.Shared.Notion.Models.Common.Icon;
-using NotionAPIBlazor.Shared.Notion.Models.Common.Page;
 using NotionAPIBlazor.Shared.Notion.Models.Pages.Properties;
 
 namespace NotionAPIBlazor.Shared.Notion.Models.Pages
@@ -31,10 +29,7 @@ namespace NotionAPIBlazor.Shared.Notion.Models.Pages
         public bool Archived { get; set; }
 
         [JsonProperty("icon")]
-        public IconObject Icon { get; set; }
-
-        [JsonProperty("url")]
-        public string Url { get; set; }
+        public IIconProperty Icon { get; set; }
 
         [JsonProperty("cover")]
         public FileObject Cover { get; set; }
@@ -43,6 +38,9 @@ namespace NotionAPIBlazor.Shared.Notion.Models.Pages
         public Property Properties { get; set; }
 
         [JsonProperty("parent")]
-        public PageParent Parent { get; set; }
+        public IPageParent Parent { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
     }
 }

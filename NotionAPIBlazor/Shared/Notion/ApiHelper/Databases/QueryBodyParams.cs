@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using NotionAPIBlazor.Shared.Notion.Models;
 using NotionAPIBlazor.Shared.Notion.Models.Filter;
+using NotionAPIBlazor.Shared.Notion.Models.Pages;
 using NotionAPIBlazor.Shared.Notion.Models.Sort;
 
 namespace NotionAPIBlazor.Shared.Notion.ApiHelper.Databases
@@ -27,6 +28,6 @@ namespace NotionAPIBlazor.Shared.Notion.ApiHelper.Databases
         public string DatabaseID { get; set; }
 
         [JsonProperty("ReturnData")]
-        public Pagination<object>? ReturnData { get; set; }
+        public Pagination<PageStruct>? ReturnData { get; set; }
     }
 }

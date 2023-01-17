@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
-using NotionAPIBlazor.Shared.Notion.Models.Common.Icon;
-using NotionAPIBlazor.Shared.Notion.Models.Common.Page;
+using NotionAPIBlazor.Shared.Notion.Models.Common.File;
 
 namespace NotionAPIBlazor.Shared.Notion.Models.Common
 {
@@ -28,7 +27,7 @@ namespace NotionAPIBlazor.Shared.Notion.Models.Common
         public bool Archived { get; set; }
 
         [JsonProperty("icon")]
-        public IconObject Icon { get; set; }
+        public IIconProperty Icon { get; set; }
 
         [JsonProperty("Url")]
         public string Url { get; set; }

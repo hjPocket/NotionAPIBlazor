@@ -4,18 +4,18 @@ namespace NotionAPIBlazor.Shared.Notion.Models.Common.File
 {
     public class FileConfig : FileObject
     {
-        public override FileObjectValue Type => FileObjectValue.File;
+        public override string Type => "file";
 
         [JsonProperty("file")]
         public string File { get; set; }
-    }
 
-    public class FileValue
-    {
-        [JsonProperty("url")]
-        public string Url { get; set; }
+        public class FileConfigValue
+        {
+            [JsonProperty("url")]
+            public string Url { get; set; }
 
-        [JsonProperty("expiry_time")]
-        public string ExpiryTime { get; set; }
+            [JsonProperty("expiry_time")]
+            public string ExpiryTime { get; set; }
+        }
     }
 }

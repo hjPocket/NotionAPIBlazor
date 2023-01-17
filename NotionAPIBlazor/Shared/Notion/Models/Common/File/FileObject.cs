@@ -5,15 +5,15 @@ using Newtonsoft.Json.Converters;
 namespace NotionAPIBlazor.Shared.Notion.Models.Common.File
 {
     [JsonConverter(typeof(JsonSubtypes))]
-    [JsonSubtypes.KnownSubType(typeof(FileObject), FileObjectValue.File)]
-    [JsonSubtypes.KnownSubType(typeof(ExternalConfig), FileObjectValue.External)]
-    public class FileObject
+    [JsonSubtypes.KnownSubType(typeof(FileConfig), "file")]
+    [JsonSubtypes.KnownSubType(typeof(ExternalConfig), "external")]
+    public class FileObject : IIconProperty
     {
         [JsonProperty("name")]
         public string Name { get; set; }
 
         [JsonProperty("type")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public virtual FileObjectValue Type { get; set; }
+        public virtual string Type { get; set; }
     }
 }
