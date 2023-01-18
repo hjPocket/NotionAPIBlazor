@@ -3,7 +3,6 @@ using System.Runtime.Serialization;
 
 namespace NotionAPIBlazor.Shared.Notion.Models.Databases.Properties
 {
-    [SuppressMessage("LangCodeNodeAPI", "UnusedMember.Global")]
     public enum PropertiesType
     {
         [EnumMember(Value = "title")]

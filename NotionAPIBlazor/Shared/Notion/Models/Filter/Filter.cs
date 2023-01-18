@@ -15,14 +15,14 @@ namespace NotionAPIBlazor.Shared.Notion.Models.Filter
     public class CompoundFilter : Filter
     {
         public CompoundFilter(List<Filter>? and = null, List<Filter>? or = null) {
-            And = and;
-            Or = or;
+            and = and;
+            or = or;
         }
 
         [JsonProperty("and")]
-        public List<Filter> And { get; set; }
+        public List<Filter> and { get; set; }
 
         [JsonProperty("or")]
-        public List<Filter> Or { get; set; }
+        public List<Filter> or { get; set; }
     }
 }

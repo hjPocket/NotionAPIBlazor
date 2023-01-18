@@ -3,6 +3,7 @@ using NotionAPIBlazor.Shared.Notion.Models.Common.RichText;
 using NotionAPIBlazor.Shared.Notion.Models.Databases.Properties;
 using NotionAPIBlazor.Shared.Notion.Models.Common.File;
 using NotionAPIBlazor.Shared.Notion.Models.Common;
+using NotionAPIBlazor.Shared.Notion.Models.Common.Parent;
 
 namespace NotionAPIBlazor.Shared.Notion.Models.Databases
 {
@@ -33,7 +34,7 @@ namespace NotionAPIBlazor.Shared.Notion.Models.Databases
         public List<RichText> Description { get; set; }
 
         [JsonProperty("icon")]
-        public IIconProperty Icon { get; set; }
+        public IconProperty Icon { get; set; }
 
         [JsonProperty("cover")]
         public FileObject Cover { get; set; }
@@ -42,7 +43,7 @@ namespace NotionAPIBlazor.Shared.Notion.Models.Databases
         public Property Properties { get; set; }
 
         [JsonProperty("parent")]
-        public IDatabaseParent Parent { get; set; }
+        public ParentObject Parent { get; set; }
 
         [JsonProperty("url")]
         public string Url { get; set; }

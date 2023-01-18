@@ -1,37 +1,60 @@
-﻿using JsonSubTypes;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+﻿using NotionAPIBlazor.Shared.Notion.Models.Common.File;
+using NotionAPIBlazor.Shared.Notion.Models.Common.RichText;
+using NotionAPIBlazor.Shared.Notion.Models.User;
 
+
+/* **
+ * Author   : Heonji
+ * Version  : v0.1
+ * Desc     : type 별로 properties에 들어가는 값 다름
+ * 
+ * **/
 namespace NotionAPIBlazor.Shared.Notion.Models.Pages.Properties
 {
-    [JsonConverter(typeof(JsonSubtypes), "type")]
-    [JsonSubtypes.KnownSubType(typeof(PageTitleConfig), PagePropertyType.Title)]
-    [JsonSubtypes.KnownSubType(typeof(PageTextConfig), PagePropertyType.RichText)]
-    [JsonSubtypes.KnownSubType(typeof(PageNumberConfig), PagePropertyType.Number)]
-    [JsonSubtypes.KnownSubType(typeof(PageSelectConfig), PagePropertyType.Select)]
-    [JsonSubtypes.KnownSubType(typeof(PageStatusConfig), PagePropertyType.Status)]
-    [JsonSubtypes.KnownSubType(typeof(PageMultiSelectConfig), PagePropertyType.MultiSelect)]
-    [JsonSubtypes.KnownSubType(typeof(PageDateConfig), PagePropertyType.Date)]
-    [JsonSubtypes.KnownSubType(typeof(PagePeopleConfig), PagePropertyType.People)]
-    [JsonSubtypes.KnownSubType(typeof(PageFilesConfig), PagePropertyType.Files)]
-    [JsonSubtypes.KnownSubType(typeof(PageCheckboxConfig), PagePropertyType.Checkbox)]
-    [JsonSubtypes.KnownSubType(typeof(PageURLConfig), PagePropertyType.Url)]
-    [JsonSubtypes.KnownSubType(typeof(PageEmailConfig), PagePropertyType.Email)]
-    [JsonSubtypes.KnownSubType(typeof(PagePhoneNumberConfig), PagePropertyType.PhoneNumber)]
-    [JsonSubtypes.KnownSubType(typeof(PageFormulaConfig), PagePropertyType.Formula)]
-    [JsonSubtypes.KnownSubType(typeof(PageRelationConfig), PagePropertyType.Relation)]
-    [JsonSubtypes.KnownSubType(typeof(PageRollupConfig), PagePropertyType.Rollup)]
-    [JsonSubtypes.KnownSubType(typeof(PageCreatedTimeConfig), PagePropertyType.CreatedTime)]
-    [JsonSubtypes.KnownSubType(typeof(PageCreatedByConfig), PagePropertyType.CreatedBy)]
-    [JsonSubtypes.KnownSubType(typeof(PageLastEditedTimeConfig), PagePropertyType.LastEditedTime)]
-    [JsonSubtypes.KnownSubType(typeof(PageLastEditedByConfig), PagePropertyType.LastEditedBy)]
     public class PageProperty
     {
-        [JsonProperty("id")]
-        public string Id { get; set; }
+        public string id { get; set; }
 
-        [JsonProperty("type")]
-        [JsonConverter(typeof(StringEnumConverter))]
-        public virtual PagePropertyType Type { get; set; }
+        public string type { get; set; }
+
+        public List<RichText>? title { get; set; }
+
+        public List<RichText>? rich_text { get; set; }
+
+        public int? number { get; set; }
+
+        public PageCommonObject? select { get; set; }
+
+        public PageCommonObject? status { get; set; }
+
+        public List<PageCommonObject>? multi_select { get; set; }
+
+        public PageDateObject? date { get; set; }
+
+        public List<UserStruct>? people { get; set; }
+
+        public FileObject? files { get; set; }
+
+        public bool? checkbox { get; set;}
+
+        public string? url { get; set; }
+
+        public string? email { get; set; }
+
+        public string? phone_number { get; set; }
+
+        public PageFormulaObject? formula { get; set; }
+
+        public PageRelationObject? relation { get; set; }
+
+        public PageRollupObject? rollup { get; set; }
+
+        public string? created_time { get; set; }
+
+        public UserStruct? created_by { get; set; }
+
+        public string? last_edited_time { get; set; }
+
+        public UserStruct? last_edited_by { get; set; }
     }
 }

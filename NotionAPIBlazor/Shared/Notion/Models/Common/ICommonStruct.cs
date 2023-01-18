@@ -27,7 +27,7 @@ namespace NotionAPIBlazor.Shared.Notion.Models.Common
         public bool Archived { get; set; }
 
         [JsonProperty("icon")]
-        public IIconProperty Icon { get; set; }
+        public IconProperty Icon { get; set; }
 
         [JsonProperty("Url")]
         public string Url { get; set; }
