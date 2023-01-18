@@ -32,10 +32,10 @@ namespace NotionAPIBlazor.Shared.Notion.Models.Pages
         public IIconProperty Icon { get; set; }
 
         [JsonProperty("cover")]
-        public FileObject Cover { get; set; }
+        public FileTest Cover { get; set; }
 
         [JsonProperty("properties")]
-        public Property Properties { get; set; }
+        public IDictionary<string, PageProperty> Properties { get; set; }
 
         [JsonProperty("parent")]
         public IPageParent Parent { get; set; }

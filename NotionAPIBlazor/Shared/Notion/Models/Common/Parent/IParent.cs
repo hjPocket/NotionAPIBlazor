@@ -11,6 +11,6 @@ namespace NotionAPIBlazor.Shared.Notion.Models.Common.Parent
     public interface IParent
     {
         [JsonConverter(typeof(StringEnumConverter))]
-        ParentType Type { get; set;} 
+        ParentType Type { get; set; }
     }
 }

@@ -7,9 +7,9 @@ namespace NotionAPIBlazor.Shared.Notion.Models.Common.File
         public override string Type => "external";
 
         [JsonProperty("external")]
-        public ExternalConfigValue External { get; set; }
+        public Info External { get; set; }
 
-        public class ExternalConfigValue
+        public class Info
         {
             [JsonProperty("url")]
             public string Url { get; set; }

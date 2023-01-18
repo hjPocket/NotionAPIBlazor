@@ -1,7 +1,6 @@
 ﻿using JsonSubTypes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using NotionAPIBlazor.Shared.Notion.Models.Common;
 
 namespace NotionAPIBlazor.Shared.Notion.Models.Common.RichText
 {

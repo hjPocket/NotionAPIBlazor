@@ -13,15 +13,15 @@ namespace NotionAPIBlazor.Shared.Notion.Models.Common.Parent
         Unknown,
 
         [EnumMember(Value = "database_id")]
-        Database,
+        DatabaseId,
 
         [EnumMember(Value = "page_id")]
-        Page,
+        PageId,
 
         [EnumMember(Value = "workspace")]
         Workspace,
 
         [EnumMember(Value = "block_id")]
-        Block
+        BlockId
     }
 }

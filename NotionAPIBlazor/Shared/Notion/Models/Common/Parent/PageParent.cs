@@ -6,9 +6,9 @@ namespace NotionAPIBlazor.Shared.Notion.Models.Common.Parent
 {
     public class PageParent : IPageParent, IDatabaseParent
     {
-        public ParentType Type { get; set; }
-
         [JsonProperty("page_id")]
-        public string PageID { get; set; }
+        public string PageId { get; set; }
+
+        public ParentType Type { get; set; }
     }
 }

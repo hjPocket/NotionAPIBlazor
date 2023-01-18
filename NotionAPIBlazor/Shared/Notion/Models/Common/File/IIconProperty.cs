@@ -1,5 +1,6 @@
 ﻿using JsonSubTypes;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace NotionAPIBlazor.Shared.Notion.Models.Common.File
 {
@@ -10,6 +11,6 @@ namespace NotionAPIBlazor.Shared.Notion.Models.Common.File
     public interface IIconProperty
     {
         [JsonProperty("type")]
-        public string Type { get; set; }
+        string Type { get; set; }
     }
 }
