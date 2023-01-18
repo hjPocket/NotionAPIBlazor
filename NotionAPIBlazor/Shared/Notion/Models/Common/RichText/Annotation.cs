@@ -5,23 +5,16 @@ namespace NotionAPIBlazor.Shared.Notion.Models.Common.RichText
 {
     public class Annotation
     {
-        [JsonProperty("bold")]
-        public bool Bold { get; set; }
+        public bool bold { get; set; }
 
-        [JsonProperty("italic")]
-        public bool Italic { get; set; }
+        public bool italic { get; set; }
 
-        [JsonProperty("strikethrough")]
-        public bool StrikeThrough { get; set; }
+        public bool strikethrough { get; set; }
 
-        [JsonProperty("underline")]
-        public bool Underline { get; set; }
+        public bool underline { get; set; }
 
-        [JsonProperty("code")]
-        public bool Code { get; set; }
+        public bool code { get; set; }
 
-        [JsonProperty("color")]
-        [JsonConverter(typeof(StringEnumConverter))]
         public Color? color { get; set; }
     }
 }

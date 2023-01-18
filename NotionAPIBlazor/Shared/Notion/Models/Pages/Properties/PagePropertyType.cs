@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
-namespace NotionAPIBlazor.Shared.Notion.Models.Databases.Properties
+namespace NotionAPIBlazor.Shared.Notion.Models.Pages.Properties
 {
-    public enum PropertiesType
+    public enum PagePropertyType
     {
         [EnumMember(Value = "title")]
         Title,

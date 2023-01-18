@@ -1,40 +1,42 @@
-﻿using JsonSubTypes;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+﻿using NotionAPIBlazor.Shared.Notion.Models.Common.RichText;
 
 namespace NotionAPIBlazor.Shared.Notion.Models.Databases.Properties
 {
-    [JsonConverter(typeof(JsonSubtypes), "type")]
-    [JsonSubtypes.KnownSubType(typeof(TitleConfig), PropertyType.Title)]
-    [JsonSubtypes.KnownSubType(typeof(TextConfig), PropertyType.RichText)]
-    [JsonSubtypes.KnownSubType(typeof(NumberConfig), PropertyType.Number)]
-    [JsonSubtypes.KnownSubType(typeof(SelectConfig), PropertyType.Select)]
-    [JsonSubtypes.KnownSubType(typeof(StatusConfig), PropertyType.Status)]
-    [JsonSubtypes.KnownSubType(typeof(MultiSelectConfig), PropertyType.MultiSelect)]
-    [JsonSubtypes.KnownSubType(typeof(DateConfig), PropertyType.Date)]
-    [JsonSubtypes.KnownSubType(typeof(PeopleConfig), PropertyType.People)]
-    [JsonSubtypes.KnownSubType(typeof(FilesConfig), PropertyType.Files)]
-    [JsonSubtypes.KnownSubType(typeof(CheckboxConfig), PropertyType.Checkbox)]
-    [JsonSubtypes.KnownSubType(typeof(URLConfig), PropertyType.Url)]
-    [JsonSubtypes.KnownSubType(typeof(EmailConfig), PropertyType.Email)]
-    [JsonSubtypes.KnownSubType(typeof(PhoneNumberConfig), PropertyType.PhoneNumber)]
-    [JsonSubtypes.KnownSubType(typeof(FormulaConfig), PropertyType.Formula)]
-    [JsonSubtypes.KnownSubType(typeof(RelationConfig), PropertyType.Relation)]
-    [JsonSubtypes.KnownSubType(typeof(RollupConfig), PropertyType.Rollup)]
-    [JsonSubtypes.KnownSubType(typeof(CreatedTimeConfig), PropertyType.CreatedTime)]
-    [JsonSubtypes.KnownSubType(typeof(CreatedByConfig), PropertyType.CreatedBy)]
-    [JsonSubtypes.KnownSubType(typeof(LastEditedTimeConfig), PropertyType.LastEditedTime)]
-    [JsonSubtypes.KnownSubType(typeof(LastEditedByConfig), PropertyType.LastEditedBy)]
     public class Property
     {
-        [JsonProperty("id")]
-        public string Id { get; set; }
+        public string type { get; set; }
 
-        [JsonProperty("name")] 
-        public string Name { get;set; }
+        //type field의 value에 따라 바인딩될 objects
+        public string id { get; set; }
 
-        [JsonProperty("type")]
-        [JsonConverter(typeof(StringEnumConverter))]
-        public virtual PropertyType Type { get; set; }
+        public string name { get;set; }
+
+        public string? title { get; set; }
+
+        public List<RichText>? rich_text { get; set; }
+
+        public NumberObject? number { get; set; }
+
+        public SelectObject? select { get; set; }
+
+        public StatusObject? status { get; set; }
+
+        public MultiSelectObject? multi_select { get; set; }
+
+        public object? date { get; set; }
+        public object? people { get; set; }
+        public object? files { get; set; }
+        public object? checkbox { get; set; }
+        public object? url { get; set; }
+        public object? email { get; set; }
+        public object? phone_number { get; set; }
+
+        public FormulaObject? formula { get; set; }
+
+        public RelationObject? relation { get; set; }
+        public object? created_time { get; set; }
+        public object? created_by { get; set; }
+        public object? last_edited { get; set; }
+        public object? last_edited { get; set; }
     }
 }

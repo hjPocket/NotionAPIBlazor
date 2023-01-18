@@ -1,28 +1,23 @@
 ﻿using JsonSubTypes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using NotionAPIBlazor.Shared.Notion.Models.Common;
 
 namespace NotionAPIBlazor.Shared.Notion.Models.Common.RichText
 {
-    //type의 타입 별로 세팅 (Notion Task(Notion API > RichText 토글) 참고)
-    [JsonConverter(typeof(JsonSubtypes), "type")]
-    [JsonSubtypes.KnownSubType(typeof(TextType), RichTextType.Text)]
-    [JsonSubtypes.KnownSubType(typeof(MentionType), RichTextType.Mention)]
-    [JsonSubtypes.KnownSubType(typeof(EquationType), RichTextType.Equation)]
     public class RichText
     {
-        [JsonProperty("type")]
-        [JsonConverter(typeof(StringEnumConverter))]
-        public virtual RichTextType Type { get; set; }
+        public string type { get; set; }
 
-        [JsonProperty("plain_text")]
-        public string PlainText { get; set; }
+        public string plain_text { get; set; }
 
-        [JsonProperty("href")]
-        public string? Href { get; set; }
+        public string? href { get; set; }
 
-        [JsonProperty("annotations")]
-        public Annotation Annotaion { get; set; }
+        public Annotation annotations { get; set; }
+
+        public Text? text { get; set; }
+
+        public Mention? mention { get; set; }
+
+        public Equation? equation { get; set; }
     }
 }

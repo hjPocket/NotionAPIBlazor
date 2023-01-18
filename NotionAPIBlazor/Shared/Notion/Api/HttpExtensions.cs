@@ -10,14 +10,23 @@ namespace NotionAPIBlazor.Shared.Notion.Api
             JsonSerializerSettings jsonSerializerSettings)
         {
             string _string = await httpResponseMessage.Content.ReadAsStringAsync();
+            Console.WriteLine(_string);
+
+            var result = JsonConvert.DeserializeObject<T>(_string);
+
+            return result;
+
+            /*
+             * deserialize stream data
+             * 
             var stream = await httpResponseMessage.Content.ReadAsStreamAsync();
             var streamReader = new StreamReader(stream);
             JsonReader jsonReader = new JsonTextReader(streamReader);
 
             var serializer = jsonSerializerSettings == null ? JsonSerializer.CreateDefault() : JsonSerializer.Create(jsonSerializerSettings);
 
-            Console.WriteLine(_string);
             return serializer.Deserialize<T>(jsonReader);
+            */
         }
     }
 }

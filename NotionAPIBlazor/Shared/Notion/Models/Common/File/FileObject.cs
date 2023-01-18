@@ -1,19 +1,13 @@
 ﻿using JsonSubTypes;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using System.Runtime.Serialization;
 
 namespace NotionAPIBlazor.Shared.Notion.Models.Common.File
 {
-    [JsonConverter(typeof(JsonSubtypes))]
-    [JsonSubtypes.KnownSubType(typeof(FileConfig), "file")]
-    [JsonSubtypes.KnownSubType(typeof(ExternalConfig), "external")]
-    public class FileObject : IIconProperty
+    public class FileObject
     {
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        public string url { get; set; }
 
-        [JsonProperty("type")]
-        [JsonConverter(typeof(StringEnumConverter))]
-        public virtual string Type { get; set; }
+        public string expiry_time { get; set; }
     }
 }

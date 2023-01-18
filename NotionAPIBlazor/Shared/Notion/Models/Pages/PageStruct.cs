@@ -1,46 +1,35 @@
 ﻿using Newtonsoft.Json;
 using NotionAPIBlazor.Shared.Notion.Models.Common;
 using NotionAPIBlazor.Shared.Notion.Models.Common.File;
+using NotionAPIBlazor.Shared.Notion.Models.Common.Parent;
 using NotionAPIBlazor.Shared.Notion.Models.Pages.Properties;
 
 namespace NotionAPIBlazor.Shared.Notion.Models.Pages
 {
-    public class PageStruct : ICommonStruct
+    public class PageStruct
     {
-        [JsonProperty("object")]
-        public string Object { get; set; }
+        public string @object { get; set; }
 
-        [JsonProperty("id")]
-        public string Id { get; set; }
+        public string id { get; set; }
 
-        [JsonProperty("created_time")]
-        public string CreatedTime { get; set; }
+        public string created_time { get; set; }
 
-        [JsonProperty("created_by")]
-        public PartialUser CreatedBy { get; set; }
+        public PartialUser created_by { get; set; }
 
-        [JsonProperty("last_edited_time")]
-        public string LastEditedTime { get; set; }
+        public string last_edited_time { get; set; }
 
-        [JsonProperty("last_edited_by")]
-        public PartialUser LastEditedBy { get; set; }
+        public PartialUser last_edited_by { get; set; }
 
-        [JsonProperty("archived")]
-        public bool Archived { get; set; }
+        public bool archived { get; set; }
 
-        [JsonProperty("icon")]
-        public IIconProperty Icon { get; set; }
+        public IconProperty icon { get; set; }
 
-        [JsonProperty("cover")]
-        public FileObject Cover { get; set; }
+        public IconProperty cover { get; set; }
 
-        [JsonProperty("properties")]
-        public Property Properties { get; set; }
+        public IDictionary<string, PageProperty> properties { get; set; }
 
-        [JsonProperty("parent")]
-        public IPageParent Parent { get; set; }
+        public ParentObject parent { get; set; }
 
-        [JsonProperty("url")]
-        public string Url { get; set; }
+        public string url { get; set; }
     }
 }

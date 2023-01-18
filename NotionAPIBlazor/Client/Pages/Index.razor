@@ -1,12 +1,12 @@
 ﻿@page "/"
-@using Newtonsoft.Json;
 @using NotionAPIBlazor.Shared.Notion.ApiHelper.Databases
 @using NotionAPIBlazor.Shared.Notion.Models;
+@using System.Text.Json;
 @inject HttpClient Http;
 
 <PageTitle>Index</PageTitle>
 
-<h1 class="mb-8">Notion API Test</h1>
+<h1 class="mt-8 mb-8">Notion API Test</h1>
 
 <div class="cds-data-table-container">
     <div class="cds--data-table-header">
@@ -60,16 +60,18 @@
     </div>
 </div>
 
-<div class="mt-8">
+<div class="mt-8 mb-8">
     <h2>Results</h2>
     <div class="mt-5" style="width:100%;padding:10px;background-color:#444;margin:0 auto;border-radius:10px;color:#fff;">
-        @results
+        <span style="word-wrap:break-word;">
+            @results
+        </span>
     </div>
 </div>
 
 @code
 {
-    private string results = "";
+    private string results = null;
 
     private async Task HandleClickQuery()
     {
@@ -83,7 +85,11 @@
             };
 
         var response = await Http.PostAsJsonAsync<QueryBodyType>($"api/Notion/QueryDatabase", Body);
-        results = response.ToString();
+
+        if (response.IsSuccessStatusCode)
+        {
+            results = await response.Content.ReadAsStringAsync();
+        }
     }
 
     private async Task HandleClickCreate()
