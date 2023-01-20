@@ -3,7 +3,7 @@ using NotionAPIBlazor.Shared.Notion.Models.Common.Parent;
 using NotionAPIBlazor.Shared.Notion.Models.Common.RichText;
 using NotionAPIBlazor.Shared.Notion.Models.Databases.Properties;
 
-namespace NotionAPIBlazor.Shared.Notion.ApiHelper.Databases
+namespace NotionAPIBlazor.Shared.Notion.ApiHelper.Databases.interfaces
 {
     public interface ICreateBodyParams
     {

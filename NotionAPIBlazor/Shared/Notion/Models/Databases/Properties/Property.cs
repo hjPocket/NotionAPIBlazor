@@ -37,6 +37,6 @@ namespace NotionAPIBlazor.Shared.Notion.Models.Databases.Properties
         public object? created_time { get; set; }
         public object? created_by { get; set; }
         public object? last_edited { get; set; }
-        public object? last_edited { get; set; }
+        public object? last_edited_by { get; set; }
     }
 }

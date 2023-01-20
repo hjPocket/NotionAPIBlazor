@@ -6,7 +6,7 @@ using NotionAPIBlazor.Shared.Notion.Models.Pages.Properties;
 
 namespace NotionAPIBlazor.Shared.Notion.Models.Pages
 {
-    public class PageStruct
+    public class Page
     {
         public string @object { get; set; }
 

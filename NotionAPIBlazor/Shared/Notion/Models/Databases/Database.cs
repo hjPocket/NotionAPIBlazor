@@ -7,7 +7,7 @@ using NotionAPIBlazor.Shared.Notion.Models.Common.Parent;
 
 namespace NotionAPIBlazor.Shared.Notion.Models.Databases
 {
-    public class DatabaseStruct : ICommonStruct
+    public class Database : ICommonStruct
     {
         [JsonProperty("object")]
         public string Object { get; set; }

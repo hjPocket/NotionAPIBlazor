@@ -8,11 +8,30 @@
 
 <h1 class="mt-8 mb-8">Notion API Test</h1>
 
-<div class="cds-data-table-container">
-    <div class="cds--data-table-header">
-        <h4 class="cds--data-table-header__title" id="table-title">Databases</h4>
-        <p class="cds--data-table-header__description"></p>
+<div class="cds-data-table-container mb-8" style="width:50%;">
+    <div class="cds--data-table-content">
+        <table class="cds--data-table cds--data-table--sm">
+            <thead>
+                <tr>
+                    <th colspan="2">Headers</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Authorization</th>
+                    <td>Bearer { SECRET_KEY }</td>
+                </tr>
+                <tr>
+                    <th>Notion-Version</th>
+                    <td>2022-06-28</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+</div>
+
+<div class="cds-data-table-container">
+    <h3 class="mb-5">Databases</h3>
     <div class="cds--data-table-content">
         <table aria-labelledby="table-title" class="cds--data-table cds--data-table--md">
             <thead>
@@ -26,7 +45,7 @@
             </thead>
             <tbody aria-live="polite">
                 <tr>
-                    <td>QueryDatabase</td>
+                    <td>Query a Database</td>
                     <td>POST</td>
                     <td>/api/Notion/QueryDatabase</td>
                     <td>
@@ -41,7 +60,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>CreateDatabase</td>
+                    <td>Create a Database</td>
                     <td>POST</td>
                     <td>/api/Notion/CreateDatabase</td>
                     <td>
@@ -55,13 +74,43 @@
                         </a>
                     </td>
                 </tr>
+                <tr>
+                    <td>Update Database</td>
+                    <td>POST</td>
+                    <td>/api/Notion/UpdateDatabase</td>
+                    <td>
+                        <button class="cds--btn--primary cds--btn--sm" style="white-space:nowrap;width:150px" @onclick="HandleClickUpdate">
+                            Update Database
+                        </button>
+                    </td>
+                    <td>
+                        <a href="https://developers.notion.com/reference/update-a-database" target="_blank" class="link-info">
+                            Update Document
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Retrieve a Database</td>
+                    <td>POST</td>
+                    <td>/api/Notion/UpdateDatabase</td>
+                    <td>
+                        <button class="cds--btn--primary cds--btn--sm" style="white-space:nowrap;width:150px" @onclick="HandleClickRetrieve">
+                            Retrieve a Database
+                        </button>
+                    </td>
+                    <td>
+                        <a href="https://developers.notion.com/reference/retrieve-a-database" target="_blank" class="link-info">
+                            Retrieve Document
+                        </a>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
 </div>
 
 <div class="mt-8 mb-8">
-    <h2>Results</h2>
+    <h3>Results</h3>
     <div class="mt-5" style="width:100%;padding:10px;background-color:#444;margin:0 auto;border-radius:10px;color:#fff;">
         <span style="word-wrap:break-word;">
             @results
@@ -94,6 +143,53 @@
 
     private async Task HandleClickCreate()
     {
-        
+        CreateBodyType Body = new CreateBodyType()
+            {
+                Data = new()
+                {
+
+                }
+            };
+
+        var response = await Http.PostAsJsonAsync<CreateBodyType>($"api/Notion/CreateDatabase", Body);
+
+        if (response.IsSuccessStatusCode)
+        {
+            results = await response.Content.ReadAsStringAsync();
+        }
+    }
+
+    private async Task HandleClickUpdate()
+    {
+        UpdateBodyType Body = new UpdateBodyType()
+            {
+                Data = new()
+                {
+
+                },
+                DatabaseID = "43d053f52a1545ca8c316373f851a28a"
+            };
+
+        var response = await Http.PostAsJsonAsync<UpdateBodyType>($"api/Notion/UpdateDatabase", Body);
+
+        if (response.IsSuccessStatusCode)
+        {
+            results = await response.Content.ReadAsStringAsync();
+        }
+    }
+
+    private async Task HandleClickRetrieve()
+    {
+        RetrieveBodyType Body = new RetrieveBodyType()
+            {
+                DatabaseID = "43d053f52a1545ca8c316373f851a28a"
+            };
+
+        var response = await Http.PostAsJsonAsync<RetrieveBodyType>($"api/Notion/RetrieveDatabase", Body);
+
+        if (response.IsSuccessStatusCode)
+        {
+            results = await response.Content.ReadAsStringAsync();
+        }
     }
 }

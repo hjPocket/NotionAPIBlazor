@@ -1,6 +1,7 @@
 ﻿using NotionAPIBlazor.Shared.Notion.Api;
 using NotionAPIBlazor.Shared.Notion.ApiHelper.Databases;
 using NotionAPIBlazor.Shared.Notion.Models;
+using NotionAPIBlazor.Shared.Notion.Models.Databases;
 using NotionAPIBlazor.Shared.Notion.Models.Pages;
 
 namespace NotionAPIBlazor.Server.Service
@@ -12,28 +13,24 @@ namespace NotionAPIBlazor.Server.Service
             restAPI = notionAPIService.GetRestApi();
         }
 
-        //Page
-        public async Task CreatePage()
+        public async Task<Pagination<Page>> QueryDatabase(string database_id, QueryBodyParams bodyParam)
         {
-            
+            return await restAPI.PostAsync<Pagination<Page>>($"/v1/databases/{database_id}/query", bodyParam);
         }
 
-        //Database
-        public async Task<Pagination<PageStruct>> QueryDatabase(string database_id, QueryBodyParams? bodyParam = null)
+        public async Task<Database> CreateDatabase(CreateBodyParams bodyParam)
         {
-            return await restAPI.PostAsync<Pagination<PageStruct>>($"/v1/databases/{database_id}/query", bodyParam);
+            return await restAPI.PostAsync<Database>($"/v1/databases/", bodyParam);
         }
 
-        public async Task CreateDatabase()
-        { 
+        public async Task<Database> UpdateDatabase(string database_id, UpdateBodyParams bodyParam = null)
+        {
+            return await restAPI.PostAsync<Database>($"/v1/databases/{database_id}", bodyParam);
         }
 
-        //Blocks
-
-
-        //Users
-        public async Task ListAllUsers()
+        public async Task<Database> RetrieveDatabase(string database_id)
         {
+            return await restAPI.GetAsync<Database>($"/v1/databases/{database_id}");
         }
     }
 }
