@@ -5,7 +5,7 @@ using Newtonsoft.Json.Converters;
 
 namespace NotionAPIBlazor.Shared.Notion.Models.User
 {
-    public class User
+    public class PartialUser
     {
         [JsonProperty("object")]
         public string Object { get; set; }
@@ -23,9 +23,9 @@ namespace NotionAPIBlazor.Shared.Notion.Models.User
         public string Type { get; set; }
 
         [JsonProperty("person")]
-        public PeopleObject Person { get; set; }
+        public PeopleObject? Person { get; set; }
 
         [JsonProperty("bot")]
-        public BotsObject Bot { get; set;}
+        public BotsObject? Bot { get; set;}
     }
 }

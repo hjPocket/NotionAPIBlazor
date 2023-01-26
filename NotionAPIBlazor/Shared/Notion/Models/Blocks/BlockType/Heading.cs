@@ -14,6 +14,6 @@ namespace NotionAPIBlazor.Shared.Notion.Models.Blocks.BlockType
 
         public Color color { get; set; }
 
-        public bool is_toggleable { get; set; }
+        public bool? is_toggleable { get; set; }
     }
 }

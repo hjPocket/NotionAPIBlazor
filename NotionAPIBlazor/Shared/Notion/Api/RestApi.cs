@@ -82,13 +82,16 @@ namespace NotionAPIBlazor.Shared.Notion.Api
             return await response.ParseStreamAsync<T>(jsonSerializerSettings);
         }
 
-        public async Task DeleteAsync(
+        public async Task<T> DeleteAsync<T>(
             string url,
             IDictionary<string, string> queryParams = null,
             IDictionary<string, string> headers = null,
+            JsonSerializerSettings jsonSerializerSettings = null,
             CancellationToken cancellationToken = default)
         {
-            await SendAsync(url, HttpMethod.Delete, queryParams, headers, cancellationToken: cancellationToken);
+            var response = await SendAsync(url, HttpMethod.Delete, queryParams, headers, cancellationToken: cancellationToken);
+
+            return await response.ParseStreamAsync<T>(null);
         }
 
         private async Task<HttpResponseMessage> SendAsync(

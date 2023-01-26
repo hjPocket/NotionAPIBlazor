@@ -25,7 +25,7 @@ namespace NotionAPIBlazor.Server.Service
 
         public async Task<Database> UpdateDatabase(string database_id, UpdateBodyParams bodyParam = null)
         {
-            return await restAPI.PostAsync<Database>($"/v1/databases/{database_id}", bodyParam);
+            return await restAPI.PatchAsync<Database>($"/v1/databases/{database_id}", bodyParam);
         }
 
         public async Task<Database> RetrieveDatabase(string database_id)

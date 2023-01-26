@@ -14,7 +14,6 @@ namespace NotionAPIBlazor.Shared.Notion.Api
              */
             string _string = await httpResponseMessage.Content.ReadAsStringAsync();
             Console.WriteLine(_string);
-
             var result = JsonConvert.DeserializeObject<T>(_string);
 
             return result;

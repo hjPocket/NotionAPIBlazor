@@ -27,10 +27,11 @@ namespace NotionAPIBlazor.Shared.Notion.Api
             JsonSerializerSettings jsonSerializerSettings = null,
             CancellationToken cancellationToken = default);
 
-        Task DeleteAsync(
+        Task<T> DeleteAsync<T>(
             string url,
             IDictionary<string, string> queryParams = null,
             IDictionary<string, string> headers = null,
+            JsonSerializerSettings jsonSerializerSettings = null,
             CancellationToken cancellationToken = default);
     }
 }

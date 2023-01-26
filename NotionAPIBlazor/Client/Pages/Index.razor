@@ -1,6 +1,8 @@
 ﻿@page "/"
+@using Newtonsoft.Json;
 @using NotionAPIBlazor.Shared.Notion.ApiHelper.Databases
 @using NotionAPIBlazor.Shared.Notion.Models;
+@using NotionAPIBlazor.Shared.Notion.Models.Pages;
 @using System.Text.Json;
 @inject HttpClient Http;
 
@@ -13,7 +15,7 @@
         <table class="cds--data-table cds--data-table--sm">
             <thead>
                 <tr>
-                    <th colspan="2">Headers</th>
+                    <th colspan="2">Required Headers</th>
                 </tr>
             </thead>
             <tbody>
@@ -92,7 +94,7 @@
                 <tr>
                     <td>Retrieve a Database</td>
                     <td>POST</td>
-                    <td>/api/Notion/UpdateDatabase</td>
+                    <td>/api/Notion/RetrieveDatabase</td>
                     <td>
                         <button class="cds--btn--primary cds--btn--sm" style="white-space:nowrap;width:150px" @onclick="HandleClickRetrieve">
                             Retrieve a Database
@@ -137,7 +139,9 @@
 
         if (response.IsSuccessStatusCode)
         {
-            results = await response.Content.ReadAsStringAsync();
+            string resultStr = await response.Content.ReadAsStringAsync();
+            var jsonResult = JsonConvert.DeserializeObject<QueryBodyType>(resultStr);
+            results = JsonConvert.SerializeObject(jsonResult?.ReturnData);
         }
     }
 

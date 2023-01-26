@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
-using NotionAPIBlazor.Shared.Notion.Models.Common;
 using NotionAPIBlazor.Shared.Notion.Models.Common.File;
 using NotionAPIBlazor.Shared.Notion.Models.Common.Parent;
 using NotionAPIBlazor.Shared.Notion.Models.Pages.Properties;
+using NotionAPIBlazor.Shared.Notion.Models.User;
 
 namespace NotionAPIBlazor.Shared.Notion.Models.Pages
 {

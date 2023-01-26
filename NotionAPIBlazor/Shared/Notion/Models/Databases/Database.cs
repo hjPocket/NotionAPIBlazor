@@ -2,8 +2,9 @@
 using NotionAPIBlazor.Shared.Notion.Models.Common.RichText;
 using NotionAPIBlazor.Shared.Notion.Models.Databases.Properties;
 using NotionAPIBlazor.Shared.Notion.Models.Common.File;
-using NotionAPIBlazor.Shared.Notion.Models.Common;
 using NotionAPIBlazor.Shared.Notion.Models.Common.Parent;
+using NotionAPIBlazor.Shared.Notion.Models.User;
+using NotionAPIBlazor.Shared.Notion.Models.Common;
 
 namespace NotionAPIBlazor.Shared.Notion.Models.Databases
 {

@@ -31,7 +31,7 @@ namespace NotionAPIBlazor.Shared.Notion.Models.Pages.Properties
 
         public PageDateObject? date { get; set; }
 
-        public List<User.User>? people { get; set; }
+        public List<PartialUser>? people { get; set; }
 
         public FileObject? files { get; set; }
 
@@ -51,10 +51,10 @@ namespace NotionAPIBlazor.Shared.Notion.Models.Pages.Properties
 
         public string? created_time { get; set; }
 
-        public User.User? created_by { get; set; }
+        public User.PartialUser? created_by { get; set; }
 
         public string? last_edited_time { get; set; }
 
-        public User.User? last_edited_by { get; set; }
+        public User.PartialUser? last_edited_by { get; set; }
     }
 }
