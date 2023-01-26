@@ -3,7 +3,6 @@ using System.Runtime.Serialization;
 
 namespace NotionAPIBlazor.Shared.Notion.Models.NotionAPIError
 {
-    [SuppressMessage("LangCodeNodeAPI", "UnusedMember.Global")]
     public enum NotionAPIErrorCode
     {
         [EnumMember(Value = "invalid_json")]

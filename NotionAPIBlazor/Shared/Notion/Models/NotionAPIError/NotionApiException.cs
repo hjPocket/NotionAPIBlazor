@@ -18,6 +18,7 @@ namespace NotionAPIBlazor.Shared.Notion.Models.NotionAPIError
 
             Data.Add("StatusCode", statusCode);
             Data.Add("NotionApiErrorCode", notionAPIErrorCode);
+            Data.Add("message", message);
         }
 
         public NotionAPIErrorCode? NotionAPIErrorCode { get; }

@@ -9,9 +9,11 @@ namespace NotionAPIBlazor.Shared.Notion.Api
             this HttpResponseMessage httpResponseMessage,
             JsonSerializerSettings jsonSerializerSettings)
         {
+            /**
+             * deserialize string data
+             */
             string _string = await httpResponseMessage.Content.ReadAsStringAsync();
             Console.WriteLine(_string);
-
             var result = JsonConvert.DeserializeObject<T>(_string);
 
             return result;

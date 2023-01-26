@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using NotionAPIBlazor.Shared.Notion.ApiHelper.Databases.interfaces;
 using NotionAPIBlazor.Shared.Notion.Models;
 using NotionAPIBlazor.Shared.Notion.Models.Filter;
 using NotionAPIBlazor.Shared.Notion.Models.Pages;
@@ -21,13 +22,10 @@ namespace NotionAPIBlazor.Shared.Notion.ApiHelper.Databases
 
     public class QueryBodyType
     {
-        [JsonProperty("Data")]
         public QueryBodyParams Data { get; set; }
 
-        [JsonProperty("DatabaseID")]
         public string DatabaseID { get; set; }
 
-        [JsonProperty("ReturnData")]
-        public Pagination<PageStruct>? ReturnData { get; set; }
+        public Pagination<Page>? ReturnData { get; set; }
     }
 }

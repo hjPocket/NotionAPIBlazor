@@ -5,10 +5,7 @@ using Newtonsoft.Json.Converters;
 
 namespace NotionAPIBlazor.Shared.Notion.Models.User
 {
-    [JsonConverter(typeof(JsonSubtypes), "type")]
-    [JsonSubtypes.KnownSubType(typeof(PeopleObject), UserType.Person)]
-    [JsonSubtypes.KnownSubType(typeof(BotsObject), UserType.Bot)]
-    public class UserStruct
+    public class PartialUser
     {
         [JsonProperty("object")]
         public string Object { get; set; }
@@ -23,7 +20,12 @@ namespace NotionAPIBlazor.Shared.Notion.Models.User
         public string? AvatarUrl { get; set; }
 
         [JsonProperty("type")]
-        [JsonConverter(typeof(StringEnumConverter))]
-        public virtual UserType Type { get; set; }
+        public string Type { get; set; }
+
+        [JsonProperty("person")]
+        public PeopleObject? Person { get; set; }
+
+        [JsonProperty("bot")]
+        public BotsObject? Bot { get; set;}
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using NotionAPIBlazor.Shared.Notion.Models.Pages.PropertyItem;
 using System;
 using System.Collections.Generic;
 using System.Linq;

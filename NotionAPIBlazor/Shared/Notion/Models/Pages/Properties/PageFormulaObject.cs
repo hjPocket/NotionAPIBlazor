@@ -13,15 +13,15 @@ namespace NotionAPIBlazor.Shared.Notion.Models.Pages.Properties
         public string Type { get; set; }
 
         [JsonProperty("boolean")]
-        public bool Bool { get; set; }
+        public bool? Bool { get; set; }
 
         [JsonProperty("date")]
-        public string Date { get; set; }
+        public string? Date { get; set; }
 
         [JsonProperty("number")]
-        public int Number { get; set; }
+        public int? Number { get; set; }
 
         [JsonProperty("string")]
-        public string String { get; set; }
+        public string? String { get; set; }
     }
 }

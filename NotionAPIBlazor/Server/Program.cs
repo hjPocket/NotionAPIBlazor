@@ -9,6 +9,8 @@ builder.Services.AddSingleton<NotionAPIService>();
 //서비스 등록
 builder.Services.AddTransient<DatabaseService>();
 builder.Services.AddTransient<PageService>();
+builder.Services.AddTransient<BlockService>();
+builder.Services.AddTransient<UserService>();
 
 builder.Services.AddControllersWithViews().ConfigureApiBehaviorOptions(options =>
 {
