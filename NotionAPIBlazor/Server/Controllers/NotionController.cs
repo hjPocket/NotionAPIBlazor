@@ -2,10 +2,12 @@
 using NotionAPIBlazor.Server.Service;
 using NotionAPIBlazor.Shared.Notion.ApiHelper.Blocks;
 using NotionAPIBlazor.Shared.Notion.ApiHelper.Databases;
+using NotionAPIBlazor.Shared.Notion.ApiHelper.Extra;
 using NotionAPIBlazor.Shared.Notion.ApiHelper.Pages;
 using NotionAPIBlazor.Shared.Notion.ApiHelper.Users;
 using NotionAPIBlazor.Shared.Notion.Models;
 using NotionAPIBlazor.Shared.Notion.Models.Databases;
+using NotionAPIBlazor.Shared.Notion.Models.Extra.Comments;
 using NotionAPIBlazor.Shared.Notion.Models.Pages;
 
 namespace NotionAPIBlazor.Server.Controllers
@@ -18,13 +20,20 @@ namespace NotionAPIBlazor.Server.Controllers
         private readonly PageService pageService;
         private readonly BlockService blockService;
         private readonly UserService userService;
+        private readonly ExtraService extraService;
 
-        public NotionController(DatabaseService databaseService, PageService pageService, BlockService blockService, UserService userService)
+        public NotionController(
+            DatabaseService databaseService, 
+            PageService pageService, 
+            BlockService blockService, 
+            UserService userService,
+            ExtraService extraService)
         {
             this.databaseService = databaseService;
             this.pageService = pageService;
             this.blockService = blockService;
             this.userService = userService;
+            this.extraService = extraService;
         }
 
 
@@ -188,7 +197,7 @@ namespace NotionAPIBlazor.Server.Controllers
         public async Task<ActionResult<RetrieveBlockChildrenType>> RetrieveBlockChildren(RetrieveBlockChildrenType bodyType)
         {
             Console.WriteLine("Retrieve");
-            var result = await blockService.RetrieveBlockChildren(bodyType.BlockID, bodyType.Data);
+            var result = await blockService.RetrieveBlockChildren(bodyType.BlockID, bodyType?.Data);
             if (result != null)
             {
                 bodyType.ReturnData = result;
@@ -263,6 +272,50 @@ namespace NotionAPIBlazor.Server.Controllers
             {
                 bodyType.ReturnData = result;
             }
+            return Ok(bodyType);
+        }
+
+        #endregion
+
+        #region Extras (Search, Comment)
+
+        [HttpPost]
+        public async Task<ActionResult<SearchBodyType>> Search(SearchBodyType bodyType)
+        {
+            var result = await extraService.Search(bodyType?.Data);
+
+            if(result != null)
+            {
+                bodyType.ReturnData = result;
+            }
+
+            return Ok(bodyType);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<RetrieveCommentType>> RetrieveComment(RetrieveCommentType bodyType)
+        {
+            var result = await extraService.RetrieveComment(bodyType.Data);
+            Console.WriteLine(bodyType.Data.BlockID);
+
+            if(result != null)
+            {
+                bodyType.RetrunData = result;
+            }
+
+            return Ok(bodyType);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<CreateCommentType>> CreateComment(CreateCommentType bodyType)
+        {
+            var result = await extraService.CreateComment(bodyType.Data);
+
+            if(result != null)
+            {
+                bodyType.ReturnData = result;
+            }
+
             return Ok(bodyType);
         }
 

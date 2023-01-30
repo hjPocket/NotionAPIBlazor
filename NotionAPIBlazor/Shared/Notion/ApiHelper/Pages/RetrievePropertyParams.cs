@@ -1,11 +1,11 @@
-﻿using NotionAPIBlazor.Shared.Notion.ApiHelper.Pages.Interfaces;
+﻿using NotionAPIBlazor.Shared.Notion.ApiHelper.Interfaces;
 
 namespace NotionAPIBlazor.Shared.Notion.ApiHelper.Pages
 {
-    public class RetrievePropertyParams : IRetrievePropertyParams
+    public class RetrievePropertyParams : IQueryParams
     {
-        public int pageSize { get; set; }
-        public string startCursor { get; set; }
+        public int? PageSize { get; set; }
+        public string? StartCursor { get; set; }
     }
 
     public class RetrievePropertyType

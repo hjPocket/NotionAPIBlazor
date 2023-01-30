@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using NotionAPIBlazor.Shared.Notion.ApiHelper.Databases.interfaces;
 using NotionAPIBlazor.Shared.Notion.Models;
 using NotionAPIBlazor.Shared.Notion.Models.Filter;
 using NotionAPIBlazor.Shared.Notion.Models.Pages;
@@ -7,7 +6,7 @@ using NotionAPIBlazor.Shared.Notion.Models.Sort;
 
 namespace NotionAPIBlazor.Shared.Notion.ApiHelper.Databases
 {
-    public class QueryBodyParams : IQueryBodyParams
+    public class QueryBodyParams
     {
         public Filter Filter { get; set; }
 

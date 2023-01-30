@@ -1,5 +1,4 @@
 ﻿
-using NotionAPIBlazor.Shared.Notion.ApiHelper.Pages.Interfaces;
 using NotionAPIBlazor.Shared.Notion.Models.Blocks;
 using NotionAPIBlazor.Shared.Notion.Models.Common.File;
 using NotionAPIBlazor.Shared.Notion.Models.Common.Parent;
@@ -8,7 +7,7 @@ using NotionAPIBlazor.Shared.Notion.Models.Pages.Properties;
 
 namespace NotionAPIBlazor.Shared.Notion.ApiHelper.Pages
 {
-    public class CreatePageParams : ICreatePageParams
+    public class CreatePageParams
     {
         public ParentObject Parent { get; set; }
         public IDictionary<string, PageProperty> Properties { get; set; }

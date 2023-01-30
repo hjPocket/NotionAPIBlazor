@@ -53,8 +53,8 @@ namespace NotionAPIBlazor.Server.Service
             Dictionary<string, string> Params = new();
             if(queryParams != null)
             {
-                Params.Add("page_size", queryParams.pageSize.ToString());
-                Params.Add("start_cursor", queryParams.startCursor);
+                Params.Add("page_size", queryParams?.PageSize?.ToString());
+                Params.Add("start_cursor", queryParams?.StartCursor);
             }
 
             //API 보내기

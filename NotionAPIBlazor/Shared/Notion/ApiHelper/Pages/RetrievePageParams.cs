@@ -1,10 +1,9 @@
 ﻿
-using NotionAPIBlazor.Shared.Notion.ApiHelper.Pages.Interfaces;
 using NotionAPIBlazor.Shared.Notion.Models.Pages;
 
 namespace NotionAPIBlazor.Shared.Notion.ApiHelper.Pages
 {
-    public class RetrievePageParams : IRetrievePageParams
+    public class RetrievePageParams
     {
         public string FilterProperties { get; set; }
     }

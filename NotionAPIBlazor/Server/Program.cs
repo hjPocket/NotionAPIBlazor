@@ -11,6 +11,7 @@ builder.Services.AddTransient<DatabaseService>();
 builder.Services.AddTransient<PageService>();
 builder.Services.AddTransient<BlockService>();
 builder.Services.AddTransient<UserService>();
+builder.Services.AddTransient<ExtraService>();
 
 builder.Services.AddControllersWithViews().ConfigureApiBehaviorOptions(options =>
 {

@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using NotionAPIBlazor.Shared.Notion.ApiHelper.Databases.interfaces;
 using NotionAPIBlazor.Shared.Notion.Models.Common.Parent;
 using NotionAPIBlazor.Shared.Notion.Models.Common.RichText;
 using NotionAPIBlazor.Shared.Notion.Models.Databases;
@@ -7,7 +6,7 @@ using NotionAPIBlazor.Shared.Notion.Models.Databases.Properties;
 
 namespace NotionAPIBlazor.Shared.Notion.ApiHelper.Databases
 {
-    public class CreateBodyParams : ICreateBodyParams
+    public class CreateBodyParams
     {
         public ParentObject Parent { get; set; }
         public List<RichText> Title { get; set; }

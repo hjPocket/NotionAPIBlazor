@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
 using NotionAPIBlazor.Shared.Notion.Models.NotionAPIError;
 using System.Net.Http.Headers;
+using System.Text;
 
 namespace NotionAPIBlazor.Shared.Notion.Api
 {
@@ -35,7 +36,6 @@ namespace NotionAPIBlazor.Shared.Notion.Api
             {
                 AddHeaders(httpRequest, headers);
             }
-
 
             HttpResponseMessage response = await httpClient.SendAsync(httpRequest, cancellationToken);
 
